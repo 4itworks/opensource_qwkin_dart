@@ -1,3 +1,6 @@
+## 0.1.2
+- Updated `CHANGELOG.md`
+
 ## 0.1.1
 - Added docs for `torch_controller` methods
 - Created a `README.md` for `torch_controller`

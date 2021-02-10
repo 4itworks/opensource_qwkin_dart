@@ -1,15 +1,32 @@
-# torch_control
+# torch_controller
 
-A new flutter plugin project.
+A flutter plugin wrote to control `torch/flash` of the device.
 
-## Getting Started
+### Disclaimer
+- For now, the package is only available for `iOS`. Android version will
+be released until `1.0.0` version
 
-This project is a starting point for a Flutter
-[plug-in package](https://flutter.dev/developing-packages/),
-a specialized package that includes platform-specific implementation code for
-Android and/or iOS.
+### Installing
+- Add `torch_controller: 0.1.2` to your pubspec.yaml
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+### Usage
 
+To use this package, some steps are required. Please follow the instructions below:
+
+- Initialize `TorchController` by calling `TorchController().initialize()` 
+before your `runApp` on your `main.dart` file.
+- Now, to use the package, just initiate the controller like:
+```dart
+/// Returns a singleton with the controller that you had initialized
+/// on `main.dart`
+final torchController = TorchController();
+```
+- To toggle (on/off) torch, just call:
+```dart
+/// This will toggle lights and return the current state
+bool active = torchController.toggle();
+```
+- You can check more specific docs right on methods documentation
+
+### Authors
+- [Rafael Carvalho Monteiro](https://github.com/rafaelcmm)
