@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:torch_control/torch_controller.dart';
+import 'package:torch_controller/torch_controller.dart';
 
 void main() {
   TorchController().initialize();

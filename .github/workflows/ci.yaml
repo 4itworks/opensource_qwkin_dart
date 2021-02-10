@@ -148,14 +148,14 @@ jobs:
         if: failure()
         uses: harupy/comment-on-pr@master
         env:
-          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+          GITHUB_TOKEN: ${{ github.token }}
         with:
           filename: WARNING_BOOTSTRAP_TEMPLATE.md
       - name: "Warning on bootstrap error"
         if: success()
         uses: harupy/comment-on-pr@master
         env:
-          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+          GITHUB_TOKEN: ${{ github.token }}
         with:
           filename: OK_BOOTSTRAP_TEMPLATE.md
 
