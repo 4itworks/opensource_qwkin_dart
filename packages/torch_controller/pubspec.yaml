@@ -2,7 +2,7 @@ name: torch_controller
 description: A new flutter plugin project.
 version: 0.1.0
 author: Rafael Carvalho Monteiro <rafael@qwkin.io>
-homepage:
+homepage: https://github.com/4itworks/opensource_qwkin_dart
 
 environment:
   sdk: ">=2.7.0 <3.0.0"
