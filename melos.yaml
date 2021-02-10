@@ -21,6 +21,10 @@ scripts:
 
   format:dart: flutter format .
 
+  test:torch:controller: >
+    melos exec -c 1 --fail-fast --scope="torch_controller" -- \
+    flutter test --coverage
+
   # Additional cleanup lifecycle script, executed when `melos clean` is ran.
   postclean: >
     melos exec -- \
