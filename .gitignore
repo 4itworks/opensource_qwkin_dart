@@ -3,3 +3,6 @@
 
 # Melos Related
 *.iml
+
+# Coverage Related
+**/coverage/

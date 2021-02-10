@@ -1,4 +1,4 @@
-name: torch_control_example
+name: torch_controller_example
 description: Demonstrates how to use the torch_control plugin.
 version: 0.0.1
 
@@ -13,7 +13,7 @@ dependencies:
   flutter:
     sdk: flutter
 
-  torch_control:
+  torch_controller:
     # When depending on this package from a real application you should use:
     #   torch_control: ^x.y.z
     # See https://dart.dev/tools/pub/dependencies#version-constraints
