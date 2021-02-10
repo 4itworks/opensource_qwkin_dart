@@ -1,2 +1,5 @@
 # Idea Related
 .idea
+
+# Melos Related
+*.iml
