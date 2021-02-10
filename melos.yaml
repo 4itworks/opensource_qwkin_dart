@@ -1,0 +1,39 @@
+name: opensource_qwkin_dart
+
+versioning:
+  mode: independent
+
+packages:
+  - packages/**
+
+scripts:
+  # Analyze the project for Dart analysis issues.
+  #  - Requires `pub global activate tuneup`.
+  analyze: >
+    melos exec -c 1 --fail-fast -- \
+      flutter analyze .
+
+  # Formats the code of all packages (Java, Objective-C, and Dart).
+  #  - Requires `flutter_plugin_tools` (`pub global activate flutter_plugin_tools`).
+  #  - Requires `git`.
+  #  - Requires `clang-format` (can be installed via Brew on MacOS / apt on Ubuntu based).
+  format: pub global run flutter_plugin_tools format --shardIndex 0 --shardCount 3
+
+  format:dart: flutter format .
+
+  # Additional cleanup lifecycle script, executed when `melos clean` is ran.
+  postclean: >
+    melos exec -- \
+      flutter clean
+      rm -rf ./build ./android/.gradle ./ios/.symlinks ./ios/Pods ./android/.idea ./.idea ./.dart-tool/build
+
+  # Additional bootstrap lifecycle script
+  postbootstrap: |
+    tuneup --version || pub global activate tuneup
+
+dev_dependencies:
+  pedantic: 1.9.2
+
+environment:
+  sdk: ">=2.1.0 <3.0.0"
+  flutter: ">=1.12.13+hotfix.5 <2.0.0"
