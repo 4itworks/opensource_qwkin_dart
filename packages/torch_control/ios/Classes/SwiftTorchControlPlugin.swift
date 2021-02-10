@@ -5,24 +5,22 @@ import AVFoundation
 public class SwiftTorchControlPlugin: NSObject, FlutterPlugin {
     public static func register(with registrar: FlutterPluginRegistrar) {
         let channel = FlutterMethodChannel(name: "torch_control", binaryMessenger: registrar.messenger())
-        let instance = SwiftTorchCompatPlugin()
+        let instance = SwiftTorchControlPlugin()
         registrar.addMethodCallDelegate(instance, channel: channel)
     }
 
     public func handle(_ call: FlutterMethodCall, result: @escaping FlutterResult) {
-        if (call.method == "turnOn") {
+        if (call.method == "toggleTorch") {
             if (!hasTorch()) {
                 result(FlutterError(code: "NOTORCH", message: "This device does not have a torch", details: nil))
             } else {
-                turnOn()
-                result(true)
+                result(toggleFlash(intensity: call.arguments as? Float))
             }
-        } else if (call.method == "turnOff") {
+        } else if (call.method == "isTorchActive") {
             if (!hasTorch()) {
                 result(FlutterError(code: "NOTORCH", message: "This device does not have a torch", details: nil))
             } else {
-                turnOff()
-                result(true)
+                result(isTorchActive())
             }
         } else if (call.method == "hasTorch") {
             result(hasTorch())
@@ -36,21 +34,33 @@ public class SwiftTorchControlPlugin: NSObject, FlutterPlugin {
         return device.hasFlash && device.hasTorch
     }
 
-    func turnOff() {
-        guard let device = AVCaptureDevice.default(for: .video) else {return}
-        if (device.hasFlash && device.hasTorch) {
-            try! device.lockForConfiguration()
-            device.torchMode = .off
-            device.unlockForConfiguration()
-        }
+    func isTorchActive() -> Bool {
+        guard let device = AVCaptureDevice.default(for: .video) else {return false}
+        return device.torchMode == AVCaptureDevice.TorchMode.on
     }
 
-    func turnOn() {
-        guard let device = AVCaptureDevice.default(for: .video) else {return}
-        if (device.hasFlash && device.hasTorch) {
-            try! device.lockForConfiguration()
-            device.torchMode = .on
+    func toggleFlash(intensity: Float? = 1) -> Bool {
+        guard let device = AVCaptureDevice.default(for: AVMediaType.video) else { return false }
+        guard device.hasTorch else { return false }
+
+        do {
+            try device.lockForConfiguration()
+
+            if (device.torchMode == AVCaptureDevice.TorchMode.on) {
+                device.torchMode = AVCaptureDevice.TorchMode.off
+            } else {
+                do {
+                    try device.setTorchModeOn(level: intensity ?? 1.0)
+                } catch {
+                    print(error)
+                }
+            }
+
             device.unlockForConfiguration()
+            return device.torchMode == AVCaptureDevice.TorchMode.on
+        } catch {
+            print(error)
+            return false;
         }
     }
 }

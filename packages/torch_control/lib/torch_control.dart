@@ -10,11 +10,9 @@ class TorchController {
   bool _ensureInitialized = false;
   double _torchIntensity;
   bool _debug;
-  bool _isTorchOn;
   bool _suppressTorchErrors;
 
   double get torchIntensity => _torchIntensity;
-  bool get isTorchOn => _isTorchOn;
 
   static final TorchController _singleton = TorchController._internal();
   factory TorchController() {
@@ -27,7 +25,6 @@ class TorchController {
       bool debug = false,
       bool suppressTorchErrors = false}) async {
     _ensureInitialized = true;
-    _isTorchOn = false;
     _debug = debug;
     _torchIntensity = intensity;
     _suppressTorchErrors = suppressTorchErrors;
@@ -35,9 +32,17 @@ class TorchController {
 
   Future<bool> get hasTorch async => await _channel.invokeMethod('hasTorch');
 
-  Future<void> on({double intensity}) async {
+  Future<bool> get isTorchActive async =>
+      await _channel.invokeMethod('isTorchActive');
+
+  Future<bool> toggle({double intensity}) async {
     if (Platform.isAndroid && intensity != null) {
       throw (AssertionError("You can only control torch intensity on iOS"));
+    }
+
+    if (intensity != null) {
+      assert(intensity > 0 && intensity <= 1,
+          "You can only use values between 0 and 1");
     }
     assert(_ensureInitialized, '''
       You must initialize your `TorchControl` instance on your runApp().
@@ -51,9 +56,7 @@ class TorchController {
         _torchIntensity = intensity;
       }
 
-      await _channel.invokeMethod('turnOn', [_torchIntensity]);
-
-      _isTorchOn = true;
+      return await _channel.invokeMethod('toggleTorch', _torchIntensity);
     } catch (error) {
       if (_debug) {
         debugPrint(error);
@@ -62,28 +65,8 @@ class TorchController {
       if (!_suppressTorchErrors) {
         rethrow;
       }
-    }
-  }
 
-  Future<void> off() async {
-    assert(_ensureInitialized, '''
-      You must initialize your `TorchControl` instance on your runApp().
-      You can perform this by adding the following line to your main.dart:
-      
-      `TorchControl.initialize();`
-    ''');
-
-    try {
-      await _channel.invokeMethod('turnOff');
-      _isTorchOn = false;
-    } catch (error) {
-      if (_debug) {
-        debugPrint(error);
-      }
-
-      if (!_suppressTorchErrors) {
-        rethrow;
-      }
+      return false;
     }
   }
 }

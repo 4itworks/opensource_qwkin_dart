@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'dart:async';
-
-import 'package:flutter/services.dart';
 import 'package:torch_control/torch_control.dart';
 
 void main() {
+  TorchController().initialize();
   runApp(MyApp());
 }
 
@@ -14,33 +12,7 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  String _platformVersion = 'Unknown';
-
-  @override
-  void initState() {
-    super.initState();
-    initPlatformState();
-  }
-
-  // Platform messages are asynchronous, so we initialize in an async method.
-  Future<void> initPlatformState() async {
-    String platformVersion;
-    // Platform messages may fail, so we use a try/catch PlatformException.
-    try {
-      // platformVersion = await TorchControl.platformVersion;
-    } on PlatformException {
-      platformVersion = 'Failed to get platform version.';
-    }
-
-    // If the widget was removed from the tree while the asynchronous platform
-    // message was in flight, we want to discard the reply rather than calling
-    // setState to update our non-existent appearance.
-    if (!mounted) return;
-
-    setState(() {
-      _platformVersion = platformVersion;
-    });
-  }
+  final controller = TorchController();
 
   @override
   Widget build(BuildContext context) {
@@ -50,7 +22,25 @@ class _MyAppState extends State<MyApp> {
           title: const Text('Plugin example app'),
         ),
         body: Center(
-          child: Text('Running on: $_platformVersion\n'),
+          child: Column(
+            children: [
+              FutureBuilder(
+                  future: controller.isTorchActive,
+                  builder: (_, snapshot) {
+                    if (snapshot.connectionState == ConnectionState.done)
+                      return Text(
+                          'Is torch on? ${snapshot.data ? 'Yes!' : 'No :('}');
+
+                    return Container();
+                  }),
+              MaterialButton(
+                  child: Text('Toggle'),
+                  onPressed: () {
+                    controller.toggle(intensity: 1);
+                    setState(() {});
+                  }),
+            ],
+          ),
         ),
       ),
     );
