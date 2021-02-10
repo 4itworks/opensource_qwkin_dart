@@ -4,7 +4,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-class TorchControl {
+class TorchController {
   final _channel = const MethodChannel('torch_control');
 
   bool _ensureInitialized = false;
@@ -16,35 +16,29 @@ class TorchControl {
   double get torchIntensity => _torchIntensity;
   bool get isTorchOn => _isTorchOn;
 
-  static final TorchControl _singleton = TorchControl._internal();
-  factory TorchControl() {
+  static final TorchController _singleton = TorchController._internal();
+  factory TorchController() {
     return _singleton;
   }
-  TorchControl._internal();
+  TorchController._internal();
 
   void initialize(
       {double intensity = 1.0,
-        bool torchEnabledWhenInitialize = false,
-        bool debug = false,
-        bool suppressTorchErrors = false}) async {
+      bool debug = false,
+      bool suppressTorchErrors = false}) async {
     _ensureInitialized = true;
+    _isTorchOn = false;
+    _debug = debug;
     _torchIntensity = intensity;
     _suppressTorchErrors = suppressTorchErrors;
-
-    if (torchEnabledWhenInitialize) {
-      _isTorchOn = true;
-      on(intensity: _torchIntensity);
-    } else {
-      _isTorchOn = false;
-      off();
-    }
   }
 
   Future<bool> get hasTorch async => await _channel.invokeMethod('hasTorch');
 
   Future<void> on({double intensity}) async {
-    assert(Platform.isAndroid && intensity != null,
-    "You can only control torch intensity on iOS");
+    if (Platform.isAndroid && intensity != null) {
+      throw (AssertionError("You can only control torch intensity on iOS"));
+    }
     assert(_ensureInitialized, '''
       You must initialize your `TorchControl` instance on your runApp().
       You can perform this by adding the following line to your main.dart:
@@ -52,12 +46,14 @@ class TorchControl {
       `TorchControl.initialize();`
     ''');
 
-    if (intensity != null) {
-      _torchIntensity = intensity;
-    }
-
     try {
+      if (intensity != null) {
+        _torchIntensity = intensity;
+      }
+
       await _channel.invokeMethod('turnOn', [_torchIntensity]);
+
+      _isTorchOn = true;
     } catch (error) {
       if (_debug) {
         debugPrint(error);
@@ -69,7 +65,7 @@ class TorchControl {
     }
   }
 
-  Future<void> off({double intensity}) async {
+  Future<void> off() async {
     assert(_ensureInitialized, '''
       You must initialize your `TorchControl` instance on your runApp().
       You can perform this by adding the following line to your main.dart:
@@ -79,6 +75,7 @@ class TorchControl {
 
     try {
       await _channel.invokeMethod('turnOff');
+      _isTorchOn = false;
     } catch (error) {
       if (_debug) {
         debugPrint(error);
