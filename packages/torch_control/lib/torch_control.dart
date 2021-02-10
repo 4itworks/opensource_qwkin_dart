@@ -24,9 +24,9 @@ class TorchControl {
 
   void initialize(
       {double intensity = 1.0,
-      bool torchEnabledWhenInitialize = false,
-      bool debug = false,
-      bool suppressTorchErrors = false}) async {
+        bool torchEnabledWhenInitialize = false,
+        bool debug = false,
+        bool suppressTorchErrors = false}) async {
     _ensureInitialized = true;
     _torchIntensity = intensity;
     _suppressTorchErrors = suppressTorchErrors;
@@ -44,7 +44,7 @@ class TorchControl {
 
   Future<void> on({double intensity}) async {
     assert(Platform.isAndroid && intensity != null,
-        "You can only control torch intensity on iOS");
+    "You can only control torch intensity on iOS");
     assert(_ensureInitialized, '''
       You must initialize your `TorchControl` instance on your runApp().
       You can perform this by adding the following line to your main.dart:
