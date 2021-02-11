@@ -1,0 +1,18 @@
+{
+  "name": "opensource_qwkin_dart",
+  "version": "1.0.0",
+  "description": "A dart/flutter opensource monorepository for Qwkin",
+  "repository": "git@github.com:4itworks/opensource_qwkin_dart.git",
+  "author": "Rafael Carvalho Monteiro de Morais <rafael@qwkin.io>",
+  "private": false,
+  "scripts": {
+    "danger": "danger ci --use-github-checks --failOnErrors --dangerfile scripts/danger.js"
+  },
+  "devDependencies": {
+    "@babel/core": "7.10.4",
+    "@babel/node": "7.10.4",
+    "@babel/plugin-transform-flow-strip-types": "7.10.4",
+    "@babel/plugin-transform-modules-commonjs": "7.10.4",
+    "danger": "^10.6.2"
+  }
+}

@@ -6,3 +6,6 @@
 
 # Coverage Related
 **/coverage/mel
+
+# Yarn Related
+node_modules/
