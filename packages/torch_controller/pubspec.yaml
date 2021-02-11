@@ -1,6 +1,6 @@
 name: torch_controller
-description: A new flutter plugin project.
-version: 0.1.4
+description: A controller to manage torch/flash device resource
+version: 0.1.4+1
 homepage: https://github.com/4itworks/opensource_qwkin_dart
 
 environment:
