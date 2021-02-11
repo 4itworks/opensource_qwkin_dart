@@ -1,5 +1,11 @@
+## 0.2.0
+- Added flashlight to android (EXPERIMEMTAL)
+
+## 0.1.4+1
+- Added badge `README.md`
+
 ## 0.1.4
-= Updated `CHANGELOG.md`
+- Updated `CHANGELOG.md`
 - Fixed art
 
 ## 0.1.3

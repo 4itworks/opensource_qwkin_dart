@@ -1,4 +1,4 @@
-package android.src.main.kotlin.com.example.torch_control.utils
+package android.src.main.kotlin.com.example.torch_controller.utils
 
 import android.app.Activity
 import android.app.Application
