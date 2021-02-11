@@ -1,3 +1,6 @@
+## 0.2.0+1
+- Improved `pubspec.yaml` description
+
 ## 0.2.0
 - Added flashlight to android (EXPERIMEMTAL)
 
