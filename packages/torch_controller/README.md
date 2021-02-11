@@ -1,4 +1,6 @@
-![opensource_qwkin_image](./assets/os.png)
+[![melos](https://img.shields.io/badge/maintained%20with-melos-f700ff.svg?style=flat-square)](https://github.com/invertase/melos)
+
+![opensource_qwkin_image](assets/os.png)
 
 A flutter plugin wrote to control `torch/flash` of the device.
 
