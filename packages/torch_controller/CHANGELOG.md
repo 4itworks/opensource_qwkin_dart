@@ -1,3 +1,7 @@
+## 0.1.3
+- Updated `CHANGELOG.md`
+- Added temporary opensource art
+
 ## 0.1.2
 - Updated `CHANGELOG.md`
 

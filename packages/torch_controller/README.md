@@ -1,4 +1,4 @@
-# torch_controller
+![opensource_qwkin_image](../../art/os.png)
 
 A flutter plugin wrote to control `torch/flash` of the device.
 
