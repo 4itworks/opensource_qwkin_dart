@@ -3,3 +3,9 @@
 
 # Melos Related
 *.iml
+
+# Coverage Related
+**/coverage/
+
+# Yarn Related
+node_modules/
