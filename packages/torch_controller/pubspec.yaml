@@ -17,8 +17,8 @@ dev_dependencies:
 flutter:
   plugin:
     platforms:
-      android:
-        package: com.example.torch_control
-        pluginClass: TorchControlPlugin
+#      android:
+#        package: com.example.torch_controller
+#        pluginClass: TorchControllerPlugin
       ios:
-        pluginClass: TorchControlPlugin
+        pluginClass: TorchControllerPlugin
