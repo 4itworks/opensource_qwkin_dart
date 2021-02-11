@@ -2,10 +2,10 @@ import Flutter
 import UIKit
 import AVFoundation
 
-public class SwiftTorchControlPlugin: NSObject, FlutterPlugin {
+public class SwiftTorchControllerPlugin: NSObject, FlutterPlugin {
     public static func register(with registrar: FlutterPluginRegistrar) {
         let channel = FlutterMethodChannel(name: "torch_control", binaryMessenger: registrar.messenger())
-        let instance = SwiftTorchControlPlugin()
+        let instance = SwiftTorchControllerPlugin()
         registrar.addMethodCallDelegate(instance, channel: channel)
     }
 

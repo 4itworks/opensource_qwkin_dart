@@ -3,8 +3,8 @@
 # Run `pod lib lint torch_control.podspec' to validate before publishing.
 #
 Pod::Spec.new do |s|
-  s.name             = 'torch_control'
-  s.version          = '0.0.1'
+  s.name             = 'torch_controller'
+  s.version          = '0.1.2'
   s.summary          = 'A new flutter plugin project.'
   s.description      = <<-DESC
 A new flutter plugin project.
