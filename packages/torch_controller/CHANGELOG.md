@@ -1,3 +1,6 @@
+## 0.2.0
+- Added flashlight to android (EXPERIMEMTAL)
+
 ## 0.1.4+1
 - Added badge `README.md`
 
