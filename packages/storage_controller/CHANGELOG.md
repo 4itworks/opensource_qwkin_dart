@@ -1,3 +1,7 @@
+## 0.1.4
+- Implemented [StorageController]
+- Implemented [StorageController] and tests
+
 ## 0.1.3
 - Created [HiveBasedStorage] implementation
 - Created [HiveBasedStorage] tests
