@@ -1,3 +1,8 @@
+## 0.1.1
+- Created [SharedPreferencesBasedStorage] implementation
+- Created [SharedPreferencesBasedStorage] tests
+- Updated [Storage] for a better interface API
+
 ## 0.1.0
 - Created [Storage] interface like class
 

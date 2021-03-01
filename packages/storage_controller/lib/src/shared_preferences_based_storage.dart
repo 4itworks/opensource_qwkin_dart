@@ -1,12 +1,11 @@
 import 'package:storage_controller/src/storage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'typedefs.dart';
 
 class SharedPreferencesBasedStorage extends Storage {
   final _argumentErrorMsg = '''
     Current type not supported by shared_preferences Api
     
-    Please use one of the current: [String, int, bool, double, List<String>].
+    Please use one of the current: [String, int, bool, double].
     
     If you think this is an error, please create an issue at: https://https://github.com/4itworks/opensource_qwkin_dart
   ''';
@@ -17,10 +16,10 @@ class SharedPreferencesBasedStorage extends Storage {
     If you think this is an error, please create an issue at: https://https://github.com/4itworks/opensource_qwkin_dart
   ''';
 
-  Future<ReaderFunction> _getReadableFunctionBasedOnType(Type type) async {
+  Future<Function> _getReadableFunctionBasedOnType(Type type) async {
     final _storage = await SharedPreferences.getInstance();
 
-    switch (Type) {
+    switch (type) {
       case String:
         return _storage.getString;
       case int:
@@ -29,27 +28,23 @@ class SharedPreferencesBasedStorage extends Storage {
         return _storage.getBool;
       case double:
         return _storage.getDouble;
-      case List:
-        return _storage.getStringList;
       default:
         throw ArgumentError(_argumentErrorMsg);
     }
   }
 
-  Future<WriteableFunction> _getWriteableFunctionBasedOnType(Type type) async {
+  Future<Function> _getWriteableFunctionBasedOnType<T>(Type type) async {
     final _storage = await SharedPreferences.getInstance();
 
-    switch (Type) {
+    switch (type) {
       case String:
-        return _storage.setString as WriteableFunction<String>;
+        return _storage.setString;
       case int:
-        return _storage.setInt as WriteableFunction<int>;
+        return _storage.setInt;
       case bool:
-        return _storage.setBool as WriteableFunction<bool>;
+        return _storage.setBool;
       case double:
-        return _storage.setDouble as WriteableFunction<double>;
-      case List:
-        return _storage.getStringList as WriteableFunction<List<String>>;
+        return _storage.setDouble;
       default:
         throw ArgumentError(_argumentErrorMsg);
     }
@@ -78,14 +73,18 @@ class SharedPreferencesBasedStorage extends Storage {
   @override
   Future<void> wipe() async {
     final _storage = await SharedPreferences.getInstance();
-    final _keys = _storage.getKeys();
 
-    _keys.forEach((key) => _storage.remove(key));
+    _storage.clear();
   }
 
   @override
   Future<void> write<T>({String key, T value}) async {
     assert(key != null, "Key named parameter must not be null");
+    assert(value != null, '''
+      Value named parameter must not be null.
+      
+      If you are trying to achieve a delete behavior, please consider use Storage.delete
+    ''');
 
     final storeFnc = await _getWriteableFunctionBasedOnType(T);
     storeFnc(key, value);

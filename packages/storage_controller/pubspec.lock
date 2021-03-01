@@ -276,3 +276,4 @@ packages:
 sdks:
   dart: ">=2.10.0-110 <2.11.0"
   flutter: ">=1.20.0 <2.0.0"
+  shared_preferences: ">=0.5.12 <2.0.0"
