@@ -6,6 +6,6 @@
 
 # Coverage Related
 **/coverage/
-g 
+g
 # Yarn Related
 node_modules/

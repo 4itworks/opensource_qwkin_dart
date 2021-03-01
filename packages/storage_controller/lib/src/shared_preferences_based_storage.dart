@@ -16,11 +16,11 @@ class SharedPreferencesBasedStorage extends Storage {
         
     If you think this is an error, please create an issue at: https://https://github.com/4itworks/opensource_qwkin_dart
   ''';
-  
+
   Future<ReaderFunction> _getReadableFunctionBasedOnType(Type type) async {
     final _storage = await SharedPreferences.getInstance();
-    
-    switch(Type) {
+
+    switch (Type) {
       case String:
         return _storage.getString;
       case int:
@@ -39,7 +39,7 @@ class SharedPreferencesBasedStorage extends Storage {
   Future<WriteableFunction> _getWriteableFunctionBasedOnType(Type type) async {
     final _storage = await SharedPreferences.getInstance();
 
-    switch(Type) {
+    switch (Type) {
       case String:
         return _storage.setString as WriteableFunction<String>;
       case int:
@@ -72,7 +72,8 @@ class SharedPreferencesBasedStorage extends Storage {
   }
 
   @override
-  Future<Map<String, dynamic>> get values => throw UnimplementedError(_unimplementedErrorMsg);
+  Future<Map<String, dynamic>> get values =>
+      throw UnimplementedError(_unimplementedErrorMsg);
 
   @override
   Future<void> wipe() async {
