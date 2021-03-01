@@ -6,6 +6,10 @@
 
 # Coverage Related
 **/coverage/
-g
+
 # Yarn Related
 node_modules/
+
+# Hive Related
+*.hive
+storage.lock

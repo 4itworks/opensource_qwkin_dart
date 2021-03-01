@@ -1,3 +1,7 @@
+## 0.1.3
+- Created [HiveBasedStorage] implementation
+- Created [HiveBasedStorage] tests
+
 ## 0.1.2
 - Created [FlutterSecureStorageBasedStorage] implementation
 - Created [FlutterSecureStorageBasedStorage] tests
