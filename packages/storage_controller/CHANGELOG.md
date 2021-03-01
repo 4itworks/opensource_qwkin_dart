@@ -1,3 +1,5 @@
-## [0.0.1] - TODO: Add release date.
-
-* TODO: Describe initial release.
+## 0.0.1
+- Released initial files
+- Created melos configuration
+- Updated `pubspec.yaml`
+- Created LICENSE
