@@ -1,3 +1,7 @@
+## 0.1.2
+- Created [FlutterSecureStorageBasedStorage] implementation
+- Created [FlutterSecureStorageBasedStorage] tests
+
 ## 0.1.1
 - Created [SharedPreferencesBasedStorage] implementation
 - Created [SharedPreferencesBasedStorage] tests
