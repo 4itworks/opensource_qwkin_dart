@@ -6,6 +6,7 @@ homepage: https://github.com/4itworks/opensource_qwkin_dart
 environment:
   sdk: ">=2.7.0 <3.0.0"
   flutter: ">=1.17.0"
+  shared_preferences: '>=0.5.12 <2.0.0'
 
 dependencies:
   flutter:
