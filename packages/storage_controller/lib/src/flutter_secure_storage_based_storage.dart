@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:storage_controller/src/storage.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
@@ -22,6 +23,29 @@ class FlutterSecureStorageBasedStorage extends Storage {
     return _instance;
   }
 
+  Function _getParseMethodBasedOnType(Type type) {
+    switch (type) {
+      case String:
+        return (t) => t;
+      case int:
+        return int.tryParse;
+      case bool:
+        return (String t) => t == 'true';
+      case double:
+        return double.tryParse;
+      default:
+        throw ArgumentError(_argumentErrorMsg);
+    }
+  }
+
+  @visibleForTesting
+  void setUpMockAndInitialize(FlutterSecureStorage flutterSecureStorage,
+      {IOSOptions iosOptions, AndroidOptions androidOptions}) {
+    _iosOptions = iosOptions;
+    _androidOptions = androidOptions;
+    _flutterSecureStorage = flutterSecureStorage;
+  }
+
   void initialize({IOSOptions iosOptions, AndroidOptions androidOptions}) {
     _iosOptions = iosOptions;
     _androidOptions = androidOptions;
@@ -38,8 +62,9 @@ class FlutterSecureStorageBasedStorage extends Storage {
 
     final stringValue = await _flutterSecureStorage.read(
         key: key, iOptions: _iosOptions, aOptions: _androidOptions);
+    final parseFnc = _getParseMethodBasedOnType(T);
 
-    return stringValue as T;
+    return parseFnc(stringValue);
   }
 
   @override
