@@ -5,9 +5,9 @@
 </p>
 
 # storage_controller
-A flutter `facade` like package to enable fully control and customize your storage needs. 
+A flutter `facade` like package to enable full control over different storage APIs to fulfill your storage needs.
 
-With this package, you will be able to use the better storage method that fulfill your need for every storage situation in your app.
+With this package, you will be able to choose which storage method best fits your needs for every storage situation in your app.
 
 We support, through a very simple API, these three heavily supported storage libraries:
 
@@ -15,7 +15,7 @@ We support, through a very simple API, these three heavily supported storage lib
 - [Shared Preferences](https://pub.dev/packages/shared_preferences)
 - [Flutter Secure Storage](https://pub.dev/packages/flutter_secure_storage)
 
-You don't have to support different API's anymore to have access to all these features. Please check us out!
+You don't have to support different APIs anymore to have access to all these features. Please check us out!
 
 ### Installing
 - Add `storage_controller: 1.0.3` to your pubspec.yaml
@@ -62,10 +62,10 @@ class MySensitiveDataOnFlutterSecureStorage extends StorageController {
 }
 ```
 
-- Use at your own will! All storages are singletons and persists during the app lifecycle (you can close your app and open again
-without loose your data).
+- Use at your own will! All storages are singletons and persist during the app lifecycle (you can close your app and open it again
+without losing your data).
 
-*IMPORTANT*: You can just use our read/write api directly, but we suggest you to create your own interface for maintenance
+*IMPORTANT*: You can just use our read/write API directly, but we suggest you create your own interface for maintenance
 and clarity purposes. Check this suggestion of implementation:
 
 ```dart
@@ -102,13 +102,16 @@ void main() async {
 ### Abstract `StorageController` explained API
 
 To understand the logic behind every `StorageControlled` method, please check
-the documented api at [Abstract Storage Class](./lib/src/storage.dart);
+the documented api at [Abstract Storage Class](/packages/storage_controller/lib/src/storage.dart);
 
 ### Troubleshooting
 - If you get an `AssertionError` from any of the storage methods telling that the [StorageController]
 is not initialized yet, you must ensure that you are executing store operations after [StorageController]
-is initialized. For that, we provide an method called `StorageController.isInitialized`. You can check if
-is `true` before execute your actions. It will return false if any error occurs on initialization
+is initialized. For that, we provide a method called `StorageController.isInitialized`. You can check if
+is `true` before executing your actions. It will return `false` if any error occurs on the initialization.
 
 ### Authors
 - [Rafael Carvalho Monteiro](https://github.com/rafaelcmm)
+
+### Contributors
+- [Carlos Eduardo](https://github.com/carloseduardosx)
