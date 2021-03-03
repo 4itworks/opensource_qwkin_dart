@@ -112,3 +112,6 @@ is `true` before executing your actions. It will return `false` if any error occ
 
 ### Authors
 - [Rafael Carvalho Monteiro](https://github.com/rafaelcmm)
+
+### Contributors
+- [Carlos Eduardo](https://github.com/carloseduardosx)
