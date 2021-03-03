@@ -12,7 +12,7 @@ A flutter plugin wrote to control `torch/flash` of the device.
 be released until `1.0.0` version
 
 ### Installing
-- Add `torch_controller: 0.1.2` to your pubspec.yaml
+- Add `torch_controller: 0.2.1+2` to your pubspec.yaml
 
 ### Usage
 

@@ -18,7 +18,7 @@ We support, through a very simple API, these three heavily supported storage lib
 You don't have to support different API's anymore to have access to all these features. Please check us out!
 
 ### Installing
-- Add `torch_controller: 0.1.2` to your pubspec.yaml
+- Add `storage_controller: 1.0.1+1` to your pubspec.yaml
 
 ### Configure Android version 
 In `[project]/android/app/build.gradle` set `minSdkVersion` to >= 18.
