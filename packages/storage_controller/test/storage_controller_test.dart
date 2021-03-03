@@ -9,6 +9,18 @@ import 'package:storage_controller/storage_controller.dart';
 
 class MockFlutterSecureStorage extends Mock implements FlutterSecureStorage {}
 
+class MyHiveCustomStorage extends StorageController {
+  MyHiveCustomStorage() : super.hive('myHiveCustomStorage');
+}
+
+class MySPCustomStorage extends StorageController {
+  MySPCustomStorage() : super.sharedPreferences();
+}
+
+class MyFSSCustomStorage extends StorageController {
+  MyFSSCustomStorage() : super.flutterSecureStorage();
+}
+
 void executeCommonActions(StorageController storageController) async {
   await storageController.write<String>(key: 'string', value: 'string');
   await storageController.write<int>(key: 'int', value: 1);
@@ -69,7 +81,7 @@ void executeCommonActions(StorageController storageController) async {
 
 void main() {
   group('Hive storage controller tests', () {
-    final hiveStorageController = StorageController.hive();
+    final hiveStorageController = MyHiveCustomStorage();
 
     hiveStorageController.prepareForTests();
 
@@ -85,8 +97,7 @@ void main() {
   });
 
   group('Shared Preferences storage controller tests', () {
-    final sharedPreferencesStorageController =
-        StorageController.sharedPreferences();
+    final sharedPreferencesStorageController = MySPCustomStorage();
 
     sharedPreferencesStorageController.prepareForTests();
 
@@ -103,8 +114,7 @@ void main() {
   });
 
   group('Flutter secure storage storage controller tests', () {
-    final flutterSecureStorageController =
-        StorageController.flutterSecureStorage();
+    final flutterSecureStorageController = MyFSSCustomStorage();
     FlutterSecureStorage flutterSecureStorage;
 
     setUp(() {

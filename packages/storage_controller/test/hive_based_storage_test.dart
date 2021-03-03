@@ -6,7 +6,7 @@ void main() {
 
   group('Hive storage tests', () {
     setUp(() async {
-      await storage.initialize();
+      await storage.initialize('myAwesomeStorage');
     });
 
     test('Should write and read with success', () async {

@@ -1,3 +1,11 @@
+## 1.0.0
+- Small adjustments at based storages
+- Improved tests
+- Written docs
+
+**BREAKING CHANGES**
+- Changed [StorageController] into an abstract class
+
 ## 0.1.4
 - Implemented [StorageController]
 - Implemented [StorageController] and tests

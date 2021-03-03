@@ -15,7 +15,8 @@ class HiveBasedStorage extends Storage {
     return _instance;
   }
 
-  Future<void> initialize({
+  Future<void> initialize(
+    String storageName, {
     HiveCipher encryptionCipher,
     bool crashRecovery = true,
     String path,
@@ -25,7 +26,7 @@ class HiveBasedStorage extends Storage {
 
     Hive.init(path);
 
-    _box = await Hive.openBox(_boxName,
+    _box = await Hive.openBox(storageName ?? _boxName,
         encryptionCipher: encryptionCipher,
         crashRecovery: crashRecovery,
         path: path,
