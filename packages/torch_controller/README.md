@@ -1,7 +1,10 @@
 [![melos](https://img.shields.io/badge/maintained%20with-melos-f700ff.svg?style=flat-square)](https://github.com/invertase/melos)
 
-![opensource_qwkin_image](assets/os.png)
+<p align="center">
+  <img src="https://raw.githubusercontent.com/4itworks/opensource_qwkin_dart/master/.github/os.png?sanitize=true" width="350px">
+</p>
 
+# torch_controller
 A flutter plugin wrote to control `torch/flash` of the device.
 
 ### Disclaimer
@@ -9,7 +12,7 @@ A flutter plugin wrote to control `torch/flash` of the device.
 be released until `1.0.0` version
 
 ### Installing
-- Add `torch_controller: 0.1.2` to your pubspec.yaml
+- Add `torch_controller: 0.2.1+2` to your pubspec.yaml
 
 ### Usage
 

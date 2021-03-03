@@ -1,6 +1,5 @@
 # Idea Related
 .idea
-lib/
 
 # Melos Related
 *.iml
@@ -10,3 +9,7 @@ lib/
 
 # Yarn Related
 node_modules/
+
+# Hive Related
+*.hive
+storage.lock

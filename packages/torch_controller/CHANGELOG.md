@@ -1,3 +1,12 @@
+## 0.2.1+2
+- fix: `README.md` fixed
+
+## 0.2.1+1
+- fix: `README.md` fixed
+
+## 0.2.1
+- Improved README.md
+
 ## 0.2.0+1
 - Improved `pubspec.yaml` description
 

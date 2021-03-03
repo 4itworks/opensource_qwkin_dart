@@ -25,6 +25,15 @@ scripts:
     melos exec -c 1 --fail-fast --scope="torch_controller" -- \
     flutter test --coverage
 
+  test:storage:controller: >
+    melos exec -c 1 --fail-fast --scope="storage_controller" -- \
+    flutter test --coverage
+
+  ## BE CAREFUL USING THIS
+  publish:packages: >
+    melos exec -c 1 --fail-fast -- \
+    flutter pub publish
+
   # Additional cleanup lifecycle script, executed when `melos clean` is ran.
   postclean: >
     melos exec -- \
