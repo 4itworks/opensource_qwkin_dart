@@ -17,9 +17,15 @@ enum StorageMethod { HIVE, FLUTTER_SECURE_STORAGE, SHARED_PREFERENCES }
 
 abstract class StorageController extends Storage {
   final _ensureInitializedMessage = '''
-    [StorageController] must be initialized inside `runApp()`.
+    The [StorageController] subtypes has different initialization methods depending on the storage method
+    you are using.
     
-    Please call `StorageController.initialize()` inside your runApp function.
+    The initialization of the storage types are made when your [StorageController] is instantiated.
+    
+    To ensure that your storage is ready to use, we provide a future called `StorageController.isInitialized`,
+    where you can check if your storage is ready to use.
+    
+    It will return `true` if the initialization succeeded or `false` if any error occurred.
     
     If you think this is an error, please create an issue at: https://https://github.com/4itworks/opensource_qwkin_dart
   ''';
@@ -66,30 +72,45 @@ abstract class StorageController extends Storage {
     String path,
     Uint8List bytes,
   }) async {
-    _storage = HiveBasedStorage();
-    await (_storage as HiveBasedStorage).initialize(storageName,
-        encryptionCipher: encryptionCipher,
-        crashRecovery: crashRecovery,
-        path: path,
-        bytes: bytes);
+    try {
+      _storage = HiveBasedStorage();
+      await (_storage as HiveBasedStorage).initialize(storageName,
+          encryptionCipher: encryptionCipher,
+          crashRecovery: crashRecovery,
+          path: path,
+          bytes: bytes);
 
-    _ensureInitialized.complete(true);
+      _ensureInitialized.complete(true);
+    } catch (e) {
+      _ensureInitialized.complete(false);
+      rethrow;
+    }
   }
 
   void _initializeFlutterSecureStorage(
       {IOSOptions iosOptions, AndroidOptions androidOptions}) {
-    _storage = FlutterSecureStorageBasedStorage();
+    try {
+      _storage = FlutterSecureStorageBasedStorage();
 
-    (_storage as FlutterSecureStorageBasedStorage)
-        .initialize(iosOptions: iosOptions, androidOptions: androidOptions);
+      (_storage as FlutterSecureStorageBasedStorage)
+          .initialize(iosOptions: iosOptions, androidOptions: androidOptions);
 
-    _ensureInitialized.complete(true);
+      _ensureInitialized.complete(true);
+    } catch (e) {
+      _ensureInitialized.complete(false);
+      rethrow;
+    }
   }
 
   void _initializeSharedPreferencesStorage() {
-    _storage = SharedPreferencesBasedStorage();
+    try {
+      _storage = SharedPreferencesBasedStorage();
 
-    _ensureInitialized.complete(true);
+      _ensureInitialized.complete(true);
+    } catch (e) {
+      _ensureInitialized.complete(false);
+      rethrow;
+    }
   }
 
   @visibleForTesting

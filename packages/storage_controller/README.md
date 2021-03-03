@@ -18,7 +18,7 @@ We support, through a very simple API, these three heavily supported storage lib
 You don't have to support different API's anymore to have access to all these features. Please check us out!
 
 ### Installing
-- Add `storage_controller: 1.0.1+1` to your pubspec.yaml
+- Add `storage_controller: 1.0.3` to your pubspec.yaml
 
 ### Configure Android version 
 In `[project]/android/app/build.gradle` set `minSdkVersion` to >= 18.
@@ -103,6 +103,12 @@ void main() async {
 
 To understand the logic behind every `StorageControlled` method, please check
 the documented api at [Abstract Storage Class](./lib/src/storage.dart);
+
+### Troubleshooting
+- If you get an `AssertionError` from any of the storage methods telling that the [StorageController]
+is not initialized yet, you must ensure that you are executing store operations after [StorageController]
+is initialized. For that, we provide an method called `StorageController.isInitialized`. You can check if
+is `true` before execute your actions. It will return false if any error occurs on initialization
 
 ### Authors
 - [Rafael Carvalho Monteiro](https://github.com/rafaelcmm)

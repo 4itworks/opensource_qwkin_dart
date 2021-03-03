@@ -1,3 +1,8 @@
+## 1.0.3
+- fix: `README.md` fixed
+- feat: Improved `_ensureInitialized` error message
+- feat: Added `Troubleshooting` on `README.md`
+
 ## 1.0.1+1
 - fix: `README.md` fixed
 
