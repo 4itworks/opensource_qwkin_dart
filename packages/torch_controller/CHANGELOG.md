@@ -1,3 +1,6 @@
+## 0.2.1
+- Improved README.md
+
 ## 0.2.0+1
 - Improved `pubspec.yaml` description
 

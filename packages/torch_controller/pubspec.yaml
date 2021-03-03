@@ -1,6 +1,6 @@
 name: torch_controller
 description: A controller to manage torch/flash device resource. We give you access to native resources to toggle flashlight, to natively check torch status and more!
-version: 0.2.0+1
+version: 0.2.1
 homepage: https://github.com/4itworks/opensource_qwkin_dart
 
 environment:
