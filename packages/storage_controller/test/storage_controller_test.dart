@@ -81,14 +81,22 @@ void executeCommonActions(StorageController storageController) async {
 
 void main() {
   group('Hive storage controller tests', () {
-    final hiveStorageController = MyHiveCustomStorage();
+    StorageController hiveStorageController;
 
-    hiveStorageController.prepareForTests();
+    setUp(() async {
+      hiveStorageController = MyHiveCustomStorage();
+      hiveStorageController.prepareForTests();
 
-    test('Was hive initialized on controller', () {
+      final initialized = await hiveStorageController.isInitialized;
+
+      expect(initialized, isTrue);
+    });
+
+    test('Was hive initialized on controller', () async {
       expect(hiveStorageController.method, equals(StorageMethod.HIVE));
       expect(
           hiveStorageController.storageRuntimeType, equals(HiveBasedStorage));
+      expect(await hiveStorageController.isInitialized, isTrue);
     });
 
     test('Execute storage operations should work', () {
@@ -97,15 +105,24 @@ void main() {
   });
 
   group('Shared Preferences storage controller tests', () {
-    final sharedPreferencesStorageController = MySPCustomStorage();
+    MySPCustomStorage sharedPreferencesStorageController;
 
-    sharedPreferencesStorageController.prepareForTests();
+    setUp(() async {
+      sharedPreferencesStorageController = MySPCustomStorage();
+      sharedPreferencesStorageController.prepareForTests();
 
-    test('Was hive initialized on controller', () {
+      final initialized =
+          await sharedPreferencesStorageController.isInitialized;
+
+      expect(initialized, isTrue);
+    });
+
+    test('Was hive initialized on controller', () async {
       expect(sharedPreferencesStorageController.method,
           equals(StorageMethod.SHARED_PREFERENCES));
       expect(sharedPreferencesStorageController.storageRuntimeType,
           equals(SharedPreferencesBasedStorage));
+      expect(await sharedPreferencesStorageController.isInitialized, isTrue);
     });
 
     test('Execute storage operations should work', () {
@@ -114,20 +131,26 @@ void main() {
   });
 
   group('Flutter secure storage storage controller tests', () {
-    final flutterSecureStorageController = MyFSSCustomStorage();
+    MyFSSCustomStorage flutterSecureStorageController;
     FlutterSecureStorage flutterSecureStorage;
 
-    setUp(() {
+    setUp(() async {
+      flutterSecureStorageController = MyFSSCustomStorage();
       flutterSecureStorage = MockFlutterSecureStorage();
       flutterSecureStorageController.prepareForTests(
           flutterSecureStorage: flutterSecureStorage);
+
+      final initialized = await flutterSecureStorageController.isInitialized;
+
+      expect(initialized, isTrue);
     });
 
-    test('Was hive initialized on controller', () {
+    test('Was hive initialized on controller', () async {
       expect(flutterSecureStorageController.method,
           equals(StorageMethod.FLUTTER_SECURE_STORAGE));
       expect(flutterSecureStorageController.storageRuntimeType,
           equals(FlutterSecureStorageBasedStorage));
+      expect(await flutterSecureStorageController.isInitialized, isTrue);
     });
 
     test('Execute storage operations should work', () {

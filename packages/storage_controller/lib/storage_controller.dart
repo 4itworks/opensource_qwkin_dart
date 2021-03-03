@@ -1,5 +1,6 @@
 library storage_controller;
 
+import 'dart:async';
 import 'dart:typed_data';
 
 import 'package:flutter/cupertino.dart';
@@ -23,11 +24,11 @@ abstract class StorageController extends Storage {
     If you think this is an error, please create an issue at: https://https://github.com/4itworks/opensource_qwkin_dart
   ''';
   StorageMethod _method;
-  bool _ensureInitialized = false;
+  Completer _ensureInitialized = Completer<bool>();
   Storage _storage;
 
   StorageMethod get method => _method;
-  bool get isInitialized => _ensureInitialized;
+  Future<bool> get isInitialized => _ensureInitialized.future;
 
   @visibleForTesting
   Type get storageRuntimeType => _storage.runtimeType;
@@ -66,14 +67,13 @@ abstract class StorageController extends Storage {
     Uint8List bytes,
   }) async {
     _storage = HiveBasedStorage();
-
     await (_storage as HiveBasedStorage).initialize(storageName,
         encryptionCipher: encryptionCipher,
         crashRecovery: crashRecovery,
         path: path,
         bytes: bytes);
 
-    _ensureInitialized = true;
+    _ensureInitialized.complete(true);
   }
 
   void _initializeFlutterSecureStorage(
@@ -83,13 +83,13 @@ abstract class StorageController extends Storage {
     (_storage as FlutterSecureStorageBasedStorage)
         .initialize(iosOptions: iosOptions, androidOptions: androidOptions);
 
-    _ensureInitialized = true;
+    _ensureInitialized.complete(true);
   }
 
   void _initializeSharedPreferencesStorage() {
     _storage = SharedPreferencesBasedStorage();
 
-    _ensureInitialized = true;
+    _ensureInitialized.complete(true);
   }
 
   @visibleForTesting
@@ -108,7 +108,7 @@ abstract class StorageController extends Storage {
   @override
   @mustCallSuper
   Future<void> delete(String key) async {
-    assert(_ensureInitialized, _ensureInitializedMessage);
+    assert(_ensureInitialized.isCompleted, _ensureInitializedMessage);
 
     return await _storage.delete(key);
   }
@@ -116,7 +116,7 @@ abstract class StorageController extends Storage {
   @override
   @mustCallSuper
   Future<T> read<T>({String key}) async {
-    assert(_ensureInitialized, _ensureInitializedMessage);
+    assert(_ensureInitialized.isCompleted, _ensureInitializedMessage);
 
     return await _storage.read<T>(key: key);
   }
@@ -124,7 +124,7 @@ abstract class StorageController extends Storage {
   @override
   @mustCallSuper
   Future<Map<String, dynamic>> get values async {
-    assert(_ensureInitialized, _ensureInitializedMessage);
+    assert(_ensureInitialized.isCompleted, _ensureInitializedMessage);
 
     return await _storage.values;
   }
@@ -132,7 +132,7 @@ abstract class StorageController extends Storage {
   @override
   @mustCallSuper
   Future<void> wipe() async {
-    assert(_ensureInitialized, _ensureInitializedMessage);
+    assert(_ensureInitialized.isCompleted, _ensureInitializedMessage);
 
     return await _storage.wipe();
   }
@@ -140,7 +140,7 @@ abstract class StorageController extends Storage {
   @override
   @mustCallSuper
   Future<void> write<T>({String key, T value}) async {
-    assert(_ensureInitialized, _ensureInitializedMessage);
+    assert(_ensureInitialized.isCompleted, _ensureInitializedMessage);
 
     return _storage.write<T>(key: key, value: value);
   }

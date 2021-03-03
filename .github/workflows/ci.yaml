@@ -228,4 +228,38 @@ jobs:
         run: melos bootstrap
       - name: "Flutter Test"
         run:  melos run test:torch:controller
-      # TODO: Add coverage reports after sonar implemented
+
+  test_storage_controller:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    needs: setup
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: Cancel Previous Runs
+        uses: styfle/cancel-workflow-action@0.5.0
+        with:
+          access_token: ${{ github.token }}
+      - name: Configuring java
+        uses: actions/setup-java@v1
+        with:
+          java-version: 12.x
+      - name: Cache Flutter dependencies
+        uses: actions/cache@v2
+        with:
+          path: /opt/hostedtoolcache/flutter
+          key: ${{ runner.os }}-flutter-1.22.4
+      - name: Configuring flutter environment
+        uses: subosito/flutter-action@v1.4.0
+        with:
+          flutter-version: 1.22.4
+          channel: 'stable'
+      - name: "Prepare Flutter Environment"
+        run: ./.github/workflows/scripts/prepare-env.sh
+      - name: "Install Tools"
+        run: ./.github/workflows/scripts/install-tools.sh
+      - name: "Bootstrap Workspace"
+        run: melos bootstrap
+      - name: "Flutter Test"
+        run:  melos run test:storage:controller
