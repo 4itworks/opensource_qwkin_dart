@@ -102,7 +102,7 @@ void main() async {
 ### Abstract `StorageController` explained API
 
 To understand the logic behind every `StorageControlled` method, please check
-the documented api at [Abstract Storage Class](./lib/src/storage.dart);
+the documented api at [Abstract Storage Class](/packages/storage_controller/lib/src/storage.dart);
 
 ### Troubleshooting
 - If you get an `AssertionError` from any of the storage methods telling that the [StorageController]
