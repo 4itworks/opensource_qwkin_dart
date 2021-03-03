@@ -1,6 +1,6 @@
 name: storage_controller
 description: A controller to manage storage device resource. We give you access to n storages to manage your data.
-version: 1.0.0
+version: 1.0.1
 homepage: https://github.com/4itworks/opensource_qwkin_dart
 
 environment:

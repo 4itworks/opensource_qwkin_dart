@@ -4,7 +4,7 @@
   <img src="https://raw.githubusercontent.com/4itworks/opensource_qwkin_dart/master/.github/os.png?sanitize=true" width="350px">
 </p>
 
-#torch_controller
+# torch_controller
 A flutter plugin wrote to control `torch/flash` of the device.
 
 ### Disclaimer

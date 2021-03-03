@@ -1,3 +1,6 @@
+## 1.0.1
+- fix: `README.md` fixed
+
 ## 1.0.0
 - Small adjustments at based storages
 - Improved tests

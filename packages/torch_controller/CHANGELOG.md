@@ -1,3 +1,6 @@
+## 0.2.1+1
+- fix: `README.md` fixed
+
 ## 0.2.1
 - Improved README.md
 
