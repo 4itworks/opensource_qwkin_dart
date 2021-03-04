@@ -1,3 +1,12 @@
+## [1.1.0-nullsafety.1] - 2021-03-04
+- chore: Improved docs
+- fix: Fixed pubspec.yaml issue
+- fix: Fixed tests on nullsafety
+- feat: Migrated to null safety
+
+**BREAKING CHANGES**
+- Migrated to null safety
+
 ## 1.0.3
 - fix: `README.md` fixed
 - feat: Improved `_ensureInitialized` error message

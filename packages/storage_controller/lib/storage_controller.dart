@@ -8,7 +8,6 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:hive/hive.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:storage_controller/src/flutter_secure_storage_based_storage.dart';
 import 'package:storage_controller/src/hive_based_storage.dart';
 import 'package:storage_controller/src/shared_preferences_based_storage.dart';
 import 'package:storage_controller/src/storage.dart';
@@ -29,9 +28,10 @@ abstract class StorageController extends Storage {
     
     If you think this is an error, please create an issue at: https://https://github.com/4itworks/opensource_qwkin_dart
   ''';
-  StorageMethod _method;
-  Completer _ensureInitialized = Completer<bool>();
-  Storage _storage;
+  final _ensureInitialized = Completer<bool>();
+
+  late StorageMethod _method;
+  late Storage _storage;
 
   StorageMethod get method => _method;
   Future<bool> get isInitialized => _ensureInitialized.future;
@@ -40,26 +40,20 @@ abstract class StorageController extends Storage {
   Type get storageRuntimeType => _storage.runtimeType;
 
   StorageController.hive(
-    String storageName, {
-    HiveCipher encryptionCipher,
+    String? storageName, {
+    HiveCipher? encryptionCipher,
     bool crashRecovery = true,
-    String path,
-    Uint8List bytes,
+    String? path,
+    Uint8List? bytes,
   }) {
     _method = StorageMethod.HIVE;
-    _initializeHive(storageName,
+    _initializeHive(storageName ?? 'storage',
         encryptionCipher: encryptionCipher,
         crashRecovery: crashRecovery,
         path: path,
         bytes: bytes);
   }
 
-  StorageController.flutterSecureStorage(
-      {IOSOptions iosOptions, AndroidOptions androidOptions}) {
-    _method = StorageMethod.FLUTTER_SECURE_STORAGE;
-    _initializeFlutterSecureStorage(
-        iosOptions: iosOptions, androidOptions: androidOptions);
-  }
   StorageController.sharedPreferences() {
     _method = StorageMethod.SHARED_PREFERENCES;
     _initializeSharedPreferencesStorage();
@@ -67,10 +61,10 @@ abstract class StorageController extends Storage {
 
   void _initializeHive(
     String storageName, {
-    HiveCipher encryptionCipher,
+    HiveCipher? encryptionCipher,
     bool crashRecovery = true,
-    String path,
-    Uint8List bytes,
+    String? path,
+    Uint8List? bytes,
   }) async {
     try {
       _storage = HiveBasedStorage();
@@ -79,21 +73,6 @@ abstract class StorageController extends Storage {
           crashRecovery: crashRecovery,
           path: path,
           bytes: bytes);
-
-      _ensureInitialized.complete(true);
-    } catch (e) {
-      _ensureInitialized.complete(false);
-      rethrow;
-    }
-  }
-
-  void _initializeFlutterSecureStorage(
-      {IOSOptions iosOptions, AndroidOptions androidOptions}) {
-    try {
-      _storage = FlutterSecureStorageBasedStorage();
-
-      (_storage as FlutterSecureStorageBasedStorage)
-          .initialize(iosOptions: iosOptions, androidOptions: androidOptions);
 
       _ensureInitialized.complete(true);
     } catch (e) {
@@ -114,14 +93,10 @@ abstract class StorageController extends Storage {
   }
 
   @visibleForTesting
-  void prepareForTests({FlutterSecureStorage flutterSecureStorage}) {
+  void prepareForTests(
+      {FlutterSecureStorage flutterSecureStorage =
+          const FlutterSecureStorage()}) {
     WidgetsFlutterBinding.ensureInitialized();
-
-    if (_storage is FlutterSecureStorageBasedStorage) {
-      (_storage as FlutterSecureStorageBasedStorage)
-          // ignore: invalid_use_of_visible_for_testing_member
-          .setUpMockAndInitialize(flutterSecureStorage);
-    }
     // ignore: invalid_use_of_visible_for_testing_member
     SharedPreferences.setMockInitialValues({});
   }
@@ -136,7 +111,7 @@ abstract class StorageController extends Storage {
 
   @override
   @mustCallSuper
-  Future<T> read<T>({String key}) async {
+  Future<T?> read<T>({required String key}) async {
     assert(_ensureInitialized.isCompleted, _ensureInitializedMessage);
 
     return await _storage.read<T>(key: key);
@@ -160,7 +135,7 @@ abstract class StorageController extends Storage {
 
   @override
   @mustCallSuper
-  Future<void> write<T>({String key, T value}) async {
+  Future<void> write<T>({required String key, required T value}) async {
     assert(_ensureInitialized.isCompleted, _ensureInitializedMessage);
 
     return _storage.write<T>(key: key, value: value);

@@ -52,16 +52,12 @@ class SharedPreferencesBasedStorage extends Storage {
 
   @override
   Future<void> delete(String key) async {
-    assert(key != null, "Key named parameter must not be null");
-
     final _storage = await SharedPreferences.getInstance();
     _storage.remove(key);
   }
 
   @override
-  Future<T> read<T>({String key}) async {
-    assert(key != null, "Key named parameter must not be null");
-
+  Future<T?> read<T>({required String key}) async {
     final storeFnc = await _getReadableFunctionBasedOnType(T);
     return storeFnc(key);
   }
@@ -78,14 +74,7 @@ class SharedPreferencesBasedStorage extends Storage {
   }
 
   @override
-  Future<void> write<T>({String key, T value}) async {
-    assert(key != null, "Key named parameter must not be null");
-    assert(value != null, '''
-      Value named parameter must not be null.
-      
-      If you are trying to achieve a delete behavior, please consider use Storage.delete
-    ''');
-
+  Future<void> write<T>({required String key, required T value}) async {
     final storeFnc = await _getWriteableFunctionBasedOnType(T);
     storeFnc(key, value);
   }
