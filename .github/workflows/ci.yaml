@@ -21,7 +21,7 @@ jobs:
         uses: actions/cache@v2
         with:
           path: ${{ matrix.flutter_path }}
-          key: ${{ runner.os }}-flutter-1.22.4
+          key: ${{ runner.os }}-flutter-2.0.x
       - uses: subosito/flutter-action@v1.4.0
         with:
           channel: 'stable'
@@ -51,11 +51,11 @@ jobs:
         uses: actions/cache@v2
         with:
           path: /opt/hostedtoolcache/flutter
-          key: ${{ runner.os }}-flutter-1.22.4
+          key: ${{ runner.os }}-flutter-2.0.x
       - name: Configuring flutter environment
         uses: subosito/flutter-action@v1.4.0
         with:
-          flutter-version: '1.22.4'
+          flutter-version: '2.0.x'
           channel: 'stable'
       - name: "Prepare Flutter Environment"
         run: ./.github/workflows/scripts/prepare-env.sh
@@ -87,11 +87,11 @@ jobs:
         uses: actions/cache@v2
         with:
           path: /opt/hostedtoolcache/flutter
-          key: ${{ runner.os }}-flutter-1.22.4
+          key: ${{ runner.os }}-flutter-2.0.x
       - name: Configuring flutter environment
         uses: subosito/flutter-action@v1.4.0
         with:
-          flutter-version: 1.22.4
+          flutter-version: '2.0.x'
           channel: 'stable'
       - name: "Prepare Flutter Environment"
         run: ./.github/workflows/scripts/prepare-env.sh
@@ -126,11 +126,11 @@ jobs:
         uses: actions/cache@v2
         with:
           path: /opt/hostedtoolcache/flutter
-          key: ${{ runner.os }}-flutter-1.22.4
+          key: ${{ runner.os }}-flutter-2.0.x
       - name: Configuring flutter environment
         uses: subosito/flutter-action@v1.4.0
         with:
-          flutter-version: 1.22.4
+          flutter-version: '2.0.x'
           channel: 'stable'
       - name: "Prepare Flutter Environment"
         run: ./.github/workflows/scripts/prepare-env.sh
@@ -161,11 +161,11 @@ jobs:
         uses: actions/cache@v2
         with:
           path: /opt/hostedtoolcache/flutter
-          key: ${{ runner.os }}-flutter-1.22.4
+          key: ${{ runner.os }}-flutter-2.0.x
       - name: Configuring flutter environment
         uses: subosito/flutter-action@v1.4.0
         with:
-          flutter-version: 1.22.4
+          flutter-version: '2.0.x'
           channel: 'stable'
       - name: "Prepare Flutter Environment"
         run: ./.github/workflows/scripts/prepare-env.sh
@@ -196,11 +196,11 @@ jobs:
         uses: actions/cache@v2
         with:
           path: /opt/hostedtoolcache/flutter
-          key: ${{ runner.os }}-flutter-1.22.4
+          key: ${{ runner.os }}-flutter-2.0.x
       - name: Configuring flutter environment
         uses: subosito/flutter-action@v1.4.0
         with:
-          flutter-version: 1.22.4
+          flutter-version: '2.0.x'
           channel: 'stable'
       - name: "Prepare Flutter Environment"
         run: ./.github/workflows/scripts/prepare-env.sh
