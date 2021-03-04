@@ -10,9 +10,9 @@ class TorchController {
   final _channel = const MethodChannel('torch_control');
 
   bool _ensureInitialized = false;
-  double _torchIntensity;
-  bool _debug;
-  bool _suppressTorchErrors;
+  late double _torchIntensity;
+  late bool _debug;
+  late bool _suppressTorchErrors;
 
   /// Get current active torch intensity. Only relevant on `iOS`
   double get torchIntensity => _torchIntensity;
@@ -48,12 +48,12 @@ class TorchController {
   /// Return a `bool` if the current device is able to use torch methods.
   ///
   /// You can use this to display something in your app configuration to handle torch usage.
-  Future<bool> get hasTorch async => await _channel.invokeMethod('hasTorch');
+  Future<bool?> get hasTorch async => await _channel.invokeMethod('hasTorch');
 
   /// Return a `bool` that checks the torch state nativelly.
   ///
   /// You can use this to enable/disable a toggle in it's initial state.
-  Future<bool> get isTorchActive async =>
+  Future<bool?> get isTorchActive async =>
       await _channel.invokeMethod('isTorchActive');
 
   /// Execute the action to toggle torch on/off. Returns the current torch state.
@@ -66,7 +66,7 @@ class TorchController {
   ///
   /// controller.toggle() // Activates the torch and returns true;
   /// controller.toggle() // Deactivates the torch and returns false;
-  Future<bool> toggle({double intensity}) async {
+  Future<bool?> toggle({double? intensity}) async {
     if (Platform.isAndroid && intensity != null) {
       throw (AssertionError("You can only control torch intensity on iOS"));
     }
@@ -90,7 +90,7 @@ class TorchController {
       return await _channel.invokeMethod('toggleTorch', _torchIntensity);
     } catch (error) {
       if (_debug) {
-        debugPrint(error);
+        debugPrint(error.toString());
       }
 
       if (!_suppressTorchErrors) {

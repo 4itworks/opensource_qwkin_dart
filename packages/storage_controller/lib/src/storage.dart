@@ -24,7 +24,7 @@ abstract class Storage {
   ///
   /// value -> '';
   /// ```
-  Future<T> read<T>({String key});
+  Future<T?> read<T>({required String key});
 
   /// Getter to access write value based on a key.
   ///
@@ -37,7 +37,7 @@ abstract class Storage {
   ///
   /// value -> 'bar';
   /// ```
-  Future<void> write<T>({String key, T value});
+  Future<void> write<T>({required String key, required T value});
 
   /// Getter to access delete value based on a key.
   ///

@@ -1,7 +1,6 @@
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
-import 'package:storage_controller/src/flutter_secure_storage_based_storage.dart';
 import 'package:storage_controller/src/hive_based_storage.dart';
 import 'package:storage_controller/src/shared_preferences_based_storage.dart';
 
@@ -15,10 +14,6 @@ class MyHiveCustomStorage extends StorageController {
 
 class MySPCustomStorage extends StorageController {
   MySPCustomStorage() : super.sharedPreferences();
-}
-
-class MyFSSCustomStorage extends StorageController {
-  MyFSSCustomStorage() : super.flutterSecureStorage();
 }
 
 void executeCommonActions(StorageController storageController) async {
@@ -81,7 +76,7 @@ void executeCommonActions(StorageController storageController) async {
 
 void main() {
   group('Hive storage controller tests', () {
-    StorageController hiveStorageController;
+    late StorageController hiveStorageController;
 
     setUp(() async {
       hiveStorageController = MyHiveCustomStorage();
@@ -105,7 +100,7 @@ void main() {
   });
 
   group('Shared Preferences storage controller tests', () {
-    MySPCustomStorage sharedPreferencesStorageController;
+    late MySPCustomStorage sharedPreferencesStorageController;
 
     setUp(() async {
       sharedPreferencesStorageController = MySPCustomStorage();
@@ -127,34 +122,6 @@ void main() {
 
     test('Execute storage operations should work', () {
       executeCommonActions(sharedPreferencesStorageController);
-    });
-  });
-
-  group('Flutter secure storage storage controller tests', () {
-    MyFSSCustomStorage flutterSecureStorageController;
-    FlutterSecureStorage flutterSecureStorage;
-
-    setUp(() async {
-      flutterSecureStorageController = MyFSSCustomStorage();
-      flutterSecureStorage = MockFlutterSecureStorage();
-      flutterSecureStorageController.prepareForTests(
-          flutterSecureStorage: flutterSecureStorage);
-
-      final initialized = await flutterSecureStorageController.isInitialized;
-
-      expect(initialized, isTrue);
-    });
-
-    test('Was hive initialized on controller', () async {
-      expect(flutterSecureStorageController.method,
-          equals(StorageMethod.FLUTTER_SECURE_STORAGE));
-      expect(flutterSecureStorageController.storageRuntimeType,
-          equals(FlutterSecureStorageBasedStorage));
-      expect(await flutterSecureStorageController.isInitialized, isTrue);
-    });
-
-    test('Execute storage operations should work', () {
-      executeCommonActions(flutterSecureStorageController);
     });
   });
 }

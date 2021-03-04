@@ -1,3 +1,10 @@
+## [0.3.0-nullsafety.1] - 2021-03-04
+- feat: null safety
+- fix: fixed tests to support null safety
+
+**BREAKING CHANGES**
+- Migrated to nullsafety
+
 ## 0.2.1+2
 - fix: `README.md` fixed
 
