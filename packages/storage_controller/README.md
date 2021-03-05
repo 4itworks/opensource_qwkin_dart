@@ -13,12 +13,11 @@ We support, through a very simple API, these three heavily supported storage lib
 
 - [Hive](https://pub.dev/packages/hive)
 - [Shared Preferences](https://pub.dev/packages/shared_preferences)
-- [Flutter Secure Storage](https://pub.dev/packages/flutter_secure_storage)
 
 You don't have to support different APIs anymore to have access to all these features. Please check us out!
 
 ### Installing
-- Add `storage_controller: 1.0.3` to your pubspec.yaml
+- Add `storage_controller` to your pubspec.yaml
 
 ### Configure Android version 
 In `[project]/android/app/build.gradle` set `minSdkVersion` to >= 18.
@@ -114,4 +113,9 @@ is `true` before executing your actions. It will return `false` if any error occ
 - [Rafael Carvalho Monteiro](https://github.com/rafaelcmm)
 
 ### Contributors
-- [Carlos Eduardo](https://github.com/carloseduardosx)
+
+<a href="https://github.com/4itworks/opensource_qwkin_dart/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=4itworks/opensource_qwkin_dart" />
+</a>
+
+Made with [contributors-img](https://contrib.rocks).
