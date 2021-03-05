@@ -1,12 +1,8 @@
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mockito/mockito.dart';
 import 'package:storage_controller/src/hive_based_storage.dart';
 import 'package:storage_controller/src/shared_preferences_based_storage.dart';
 
 import 'package:storage_controller/storage_controller.dart';
-
-class MockFlutterSecureStorage extends Mock implements FlutterSecureStorage {}
 
 class MyHiveCustomStorage extends StorageController {
   MyHiveCustomStorage() : super.hive('myHiveCustomStorage');

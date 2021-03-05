@@ -5,7 +5,6 @@ import 'dart:typed_data';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:hive/hive.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:storage_controller/src/hive_based_storage.dart';
@@ -93,9 +92,7 @@ abstract class StorageController extends Storage {
   }
 
   @visibleForTesting
-  void prepareForTests(
-      {FlutterSecureStorage flutterSecureStorage =
-          const FlutterSecureStorage()}) {
+  void prepareForTests() {
     WidgetsFlutterBinding.ensureInitialized();
     // ignore: invalid_use_of_visible_for_testing_member
     SharedPreferences.setMockInitialValues({});

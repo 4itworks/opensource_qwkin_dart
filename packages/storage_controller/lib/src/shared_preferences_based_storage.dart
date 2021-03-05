@@ -1,5 +1,6 @@
 import 'package:storage_controller/src/storage.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:shared_preferences/shared_preferences.dart'
+    if (dart.library.web) 'package:shared_preferences/shared_preferences_web.dart';
 
 class SharedPreferencesBasedStorage extends Storage {
   final _argumentErrorMsg = '''

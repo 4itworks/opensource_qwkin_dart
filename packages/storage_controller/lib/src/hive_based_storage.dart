@@ -1,8 +1,8 @@
-import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:storage_controller/src/storage.dart';
 import 'package:hive/hive.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
 class HiveBasedStorage extends Storage {
   late Box _box;
@@ -20,10 +20,8 @@ class HiveBasedStorage extends Storage {
     String? path,
     Uint8List? bytes,
   }) async {
-    final path = Directory.current.path;
-
     try {
-      Hive.init(path);
+      Hive.initFlutter();
 
       _box = await Hive.openBox(storageName,
           encryptionCipher: encryptionCipher,
@@ -31,10 +29,7 @@ class HiveBasedStorage extends Storage {
           path: path,
           bytes: bytes);
     } on HiveError catch (_) {
-      _box = await Hive.openBox(storageName,
-          encryptionCipher: encryptionCipher,
-          crashRecovery: crashRecovery,
-          path: path);
+      // To ignore if hive is already initiated
     }
   }
 
