@@ -19,21 +19,6 @@ You don't have to support different APIs anymore to have access to all these fea
 ### Installing
 - Add `storage_controller` to your pubspec.yaml
 
-### Configure Android version 
-In `[project]/android/app/build.gradle` set `minSdkVersion` to >= 18.
-```
-android {
-    ...
-    
-    defaultConfig {
-        ...
-        minSdkVersion 18
-        ...
-    }
-
-}
-```
-
 ### Usage
 
 To use this package, some steps are required. Please follow the instructions below:
@@ -54,10 +39,6 @@ class MyCustomStorageOnHive extends StorageController {
 
 class MySettingsOnSharedPreferences extends StorageController { 
   MySettingsOnSharedPreferences() : super.sharedPreferences();
-}
-
-class MySensitiveDataOnFlutterSecureStorage extends StorageController { 
-  MySensitiveDataOnFlutterSecureStorage() : super.flutterSecureStorage();
 }
 ```
 
@@ -101,13 +82,15 @@ void main() async {
 ### Abstract `StorageController` explained API
 
 To understand the logic behind every `StorageControlled` method, please check
-the documented api at [Abstract Storage Class](/packages/storage_controller/lib/src/storage.dart);
+the documented api at [Abstract Storage Class](https://github.com/4itworks/opensource_qwkin_dart/blob/master/packages/storage_controller/lib/src/storage.dart);
 
 ### Troubleshooting
 - If you get an `AssertionError` from any of the storage methods telling that the [StorageController]
 is not initialized yet, you must ensure that you are executing store operations after [StorageController]
 is initialized. For that, we provide a method called `StorageController.isInitialized`. You can check if
 is `true` before executing your actions. It will return `false` if any error occurs on the initialization.
+
+- If you have any issues in testing, please try call `StorageController.prepareForTests`.
 
 ### Authors
 - [Rafael Carvalho Monteiro](https://github.com/rafaelcmm)
