@@ -1,11 +1,19 @@
+import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:storage_controller/src/hive_based_storage.dart';
 
 void main() {
+  TestWidgetsFlutterBinding.ensureInitialized();
+
   final storage = HiveBasedStorage();
 
   group('Hive storage tests', () {
     setUp(() async {
+      const MethodChannel channel =
+          MethodChannel('plugins.flutter.io/path_provider');
+      channel.setMockMethodCallHandler((MethodCall methodCall) async {
+        return '.';
+      });
       await storage.initialize('myAwesomeStorage');
     });
 

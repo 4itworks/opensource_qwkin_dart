@@ -1,5 +1,7 @@
 import 'dart:typed_data';
 
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:storage_controller/src/storage.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
@@ -17,20 +19,18 @@ class HiveBasedStorage extends Storage {
     String storageName, {
     HiveCipher? encryptionCipher,
     bool crashRecovery = true,
-    String? path,
     Uint8List? bytes,
   }) async {
     try {
-      Hive.initFlutter();
-
-      _box = await Hive.openBox(storageName,
-          encryptionCipher: encryptionCipher,
-          crashRecovery: crashRecovery,
-          path: path,
-          bytes: bytes);
+      await Hive.initFlutter();
     } on HiveError catch (_) {
-      // To ignore if hive is already initiated
+      debugPrint('An instance of hive is already initialized');
     }
+
+    _box = await Hive.openBox(storageName,
+        encryptionCipher: encryptionCipher,
+        crashRecovery: crashRecovery,
+        bytes: bytes);
   }
 
   @override

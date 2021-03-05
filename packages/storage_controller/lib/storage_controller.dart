@@ -5,6 +5,7 @@ import 'dart:typed_data';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter/services.dart';
 import 'package:hive/hive.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:storage_controller/src/hive_based_storage.dart';
@@ -42,14 +43,12 @@ abstract class StorageController extends Storage {
     String? storageName, {
     HiveCipher? encryptionCipher,
     bool crashRecovery = true,
-    String? path,
     Uint8List? bytes,
   }) {
     _method = StorageMethod.HIVE;
     _initializeHive(storageName ?? 'storage',
         encryptionCipher: encryptionCipher,
         crashRecovery: crashRecovery,
-        path: path,
         bytes: bytes);
   }
 
@@ -62,7 +61,6 @@ abstract class StorageController extends Storage {
     String storageName, {
     HiveCipher? encryptionCipher,
     bool crashRecovery = true,
-    String? path,
     Uint8List? bytes,
   }) async {
     try {
@@ -70,7 +68,6 @@ abstract class StorageController extends Storage {
       await (_storage as HiveBasedStorage).initialize(storageName,
           encryptionCipher: encryptionCipher,
           crashRecovery: crashRecovery,
-          path: path,
           bytes: bytes);
 
       _ensureInitialized.complete(true);
@@ -92,10 +89,17 @@ abstract class StorageController extends Storage {
   }
 
   @visibleForTesting
-  void prepareForTests() {
+  static void prepareForTests() {
+    const MethodChannel channel =
+        MethodChannel('plugins.flutter.io/path_provider');
+
     WidgetsFlutterBinding.ensureInitialized();
     // ignore: invalid_use_of_visible_for_testing_member
     SharedPreferences.setMockInitialValues({});
+
+    channel.setMockMethodCallHandler((MethodCall methodCall) async {
+      return '.';
+    });
   }
 
   @override

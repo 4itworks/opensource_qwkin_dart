@@ -75,8 +75,8 @@ void main() {
     late StorageController hiveStorageController;
 
     setUp(() async {
+      StorageController.prepareForTests();
       hiveStorageController = MyHiveCustomStorage();
-      hiveStorageController.prepareForTests();
 
       final initialized = await hiveStorageController.isInitialized;
 
@@ -99,8 +99,8 @@ void main() {
     late MySPCustomStorage sharedPreferencesStorageController;
 
     setUp(() async {
+      StorageController.prepareForTests();
       sharedPreferencesStorageController = MySPCustomStorage();
-      sharedPreferencesStorageController.prepareForTests();
 
       final initialized =
           await sharedPreferencesStorageController.isInitialized;
