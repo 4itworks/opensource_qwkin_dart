@@ -1,3 +1,7 @@
+## [1.1.0-nullsafety.2] - 2021-03-05
+- Fixed null safety unsecure reports
+- Fixed analyze and dart deps
+
 ## [1.1.0-nullsafety.1] - 2021-03-04
 - chore: Improved docs
 - fix: Fixed pubspec.yaml issue
