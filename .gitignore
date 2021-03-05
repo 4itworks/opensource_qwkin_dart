@@ -12,4 +12,4 @@ node_modules/
 
 # Hive Related
 *.hive
-storage.lock
+*storage.lock
