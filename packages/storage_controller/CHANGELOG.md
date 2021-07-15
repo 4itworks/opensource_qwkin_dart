@@ -1,3 +1,10 @@
+## [1.2.1] - 2021-07-15
+- Feat: Stable null safety
+- fix: Fixed broken deps
+
+**BREAKING CHANGES**
+- Removed support to FCA
+
 ## [1.1.1-nullsafety.1] - 2021-03-05
 - Fixed docs
 
