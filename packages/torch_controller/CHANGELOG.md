@@ -1,3 +1,7 @@
+## [0.4.0] - 2021-07-15
+- feat: null safety stable
+- fix: necessary upgrades to support 30 `compileSdkVersion`
+
 ## [0.3.0-nullsafety.1] - 2021-03-04
 - feat: null safety
 - fix: fixed tests to support null safety
