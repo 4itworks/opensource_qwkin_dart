@@ -22,7 +22,7 @@ class TorchControllerPlugin(activity: Activity) : MethodCallHandler {
     torchImpl = Torch(activity)
 
     activity.application.registerActivityLifecycleCallbacks(object : ActivityLifecycleCallbacks() {
-      override fun onActivityStopped(activity: Activity?) {
+      override fun onActivityStopped(activity: Activity) {
         torchImpl.dispose()
       }
     })
