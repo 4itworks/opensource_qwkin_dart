@@ -8,12 +8,16 @@ void main() {
   final storage = HiveBasedStorage();
 
   group('Hive storage tests', () {
-    setUp(() async {
+    setUpAll(() async {
       const MethodChannel channel =
           MethodChannel('plugins.flutter.io/path_provider');
       channel.setMockMethodCallHandler((MethodCall methodCall) async {
         return '.';
       });
+      await HiveBasedStorage.setup();
+    });
+
+    setUp(() async {
       await storage.initialize('myAwesomeStorage');
     });
 

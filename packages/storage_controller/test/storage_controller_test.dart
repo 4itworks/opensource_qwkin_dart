@@ -1,7 +1,7 @@
+import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:storage_controller/src/hive_based_storage.dart';
 import 'package:storage_controller/src/shared_preferences_based_storage.dart';
-
 import 'package:storage_controller/storage_controller.dart';
 
 class MyHiveCustomStorage extends StorageController {
@@ -71,8 +71,19 @@ void executeCommonActions(StorageController storageController) async {
 }
 
 void main() {
+  TestWidgetsFlutterBinding.ensureInitialized();
+
+  late StorageController hiveStorageController;
+
   group('Hive storage controller tests', () {
-    late StorageController hiveStorageController;
+    setUpAll(() async {
+      const MethodChannel channel =
+          MethodChannel('plugins.flutter.io/path_provider');
+      channel.setMockMethodCallHandler((MethodCall methodCall) async {
+        return '.';
+      });
+      await StorageController.setup();
+    });
 
     setUp(() async {
       StorageController.prepareForTests();

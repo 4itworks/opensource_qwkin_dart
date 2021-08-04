@@ -1,9 +1,9 @@
+import 'dart:async';
 import 'dart:typed_data';
 
-import 'package:flutter/material.dart';
-import 'package:storage_controller/src/storage.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:storage_controller/src/storage.dart';
 
 class HiveBasedStorage extends Storage {
   late Box _box;
@@ -14,6 +14,10 @@ class HiveBasedStorage extends Storage {
     return _instance;
   }
 
+  static Future<void> setup([String? subDir]) async {
+    await Hive.initFlutter(subDir);
+  }
+
   Future<void> initialize(
     String storageName, {
     HiveCipher? encryptionCipher,
@@ -21,15 +25,21 @@ class HiveBasedStorage extends Storage {
     Uint8List? bytes,
   }) async {
     try {
-      await Hive.initFlutter();
+      _box = await Hive.openBox(storageName,
+          encryptionCipher: encryptionCipher,
+          crashRecovery: crashRecovery,
+          bytes: bytes);
     } on HiveError catch (_) {
-      debugPrint('An instance of hive is already initialized');
+      print('''
+        storage_controller wasn't able to initialize the box, so the storage may fail.
+        
+        This may be related to the missing call `StorageController.setup([subdir])` on app initialization.
+        
+        Please certify that you are setting up storage_controller properly.
+        
+        If you think this is an error, please feel free to open an issue at https://github.com/4itworks/opensource_qwkin_dart
+      ''');
     }
-
-    _box = await Hive.openBox(storageName,
-        encryptionCipher: encryptionCipher,
-        crashRecovery: crashRecovery,
-        bytes: bytes);
   }
 
   @override

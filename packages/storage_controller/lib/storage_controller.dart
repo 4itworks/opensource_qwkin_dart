@@ -7,6 +7,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:hive/hive.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:storage_controller/src/hive_based_storage.dart';
 import 'package:storage_controller/src/shared_preferences_based_storage.dart';
@@ -57,6 +58,11 @@ abstract class StorageController extends Storage {
     _initializeSharedPreferencesStorage();
   }
 
+  /// Required for usage with Hive library
+  static Future<void> setup([String? subDir]) async {
+    await HiveBasedStorage.setup(subDir);
+  }
+
   void _initializeHive(
     String storageName, {
     HiveCipher? encryptionCipher,
@@ -65,6 +71,7 @@ abstract class StorageController extends Storage {
   }) async {
     try {
       _storage = HiveBasedStorage();
+
       await (_storage as HiveBasedStorage).initialize(storageName,
           encryptionCipher: encryptionCipher,
           crashRecovery: crashRecovery,
