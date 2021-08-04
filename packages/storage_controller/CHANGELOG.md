@@ -1,3 +1,7 @@
+## [1.2.3] - 2021-08-04
+- chore: added setup to the docs
+- chore: bumped required flutter version
+
 ## [1.2.2] - 2021-08-04
 - fix: fixed hive error on initialize
 - feat: created `StorageController.setup()` method to ensure proper setup of any new storages
@@ -5,9 +9,6 @@
 ## [1.2.1] - 2021-07-15
 - Feat: Stable null safety
 - fix: Fixed broken deps
-
-**BREAKING CHANGES**
-- Removed support to FCA
 
 ## [1.1.1-nullsafety.1] - 2021-03-05
 - Fixed docs

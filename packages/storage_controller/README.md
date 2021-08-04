@@ -23,6 +23,18 @@ You don't have to support different APIs anymore to have access to all these fea
 
 To use this package, some steps are required. Please follow the instructions below:
 
+- Prepare setup of `StorageController` on your app initialization (required to use hive based storage)
+```dart
+import 'package:storage_controller/storage_controller.dart';
+
+void main() {
+  StorageController.setup();
+  runApp(MyApp());
+}
+
+/// Rest of Application
+```
+
 - Create your own storage extending our exported abstract class `StorageController`
 ```dart
 import 'package:storage_controller/storage_controller.dart';

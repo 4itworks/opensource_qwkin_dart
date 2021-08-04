@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:storage_controller/storage_controller.dart';
 
 void main() {
+  StorageController.setup();
   runApp(MyApp());
 }
 
