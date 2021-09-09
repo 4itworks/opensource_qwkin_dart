@@ -5,7 +5,6 @@ import 'dart:typed_data';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter/services.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -35,6 +34,7 @@ abstract class StorageController extends Storage {
   late Storage _storage;
 
   StorageMethod get method => _method;
+
   Future<bool> get isInitialized => _ensureInitialized.future;
 
   @visibleForTesting
@@ -97,16 +97,9 @@ abstract class StorageController extends Storage {
 
   @visibleForTesting
   static void prepareForTests() {
-    const MethodChannel channel =
-        MethodChannel('plugins.flutter.io/path_provider');
-
     WidgetsFlutterBinding.ensureInitialized();
     // ignore: invalid_use_of_visible_for_testing_member
     SharedPreferences.setMockInitialValues({});
-
-    channel.setMockMethodCallHandler((MethodCall methodCall) async {
-      return '.';
-    });
   }
 
   @override
