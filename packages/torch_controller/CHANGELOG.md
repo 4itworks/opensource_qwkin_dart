@@ -1,3 +1,6 @@
+## [0.4.1] - 2021-9-9
+- feat: added support to android 21 (5.0)
+
 ## [0.4.0] - 2021-07-15
 - feat: null safety stable
 - fix: necessary upgrades to support 30 `compileSdkVersion`

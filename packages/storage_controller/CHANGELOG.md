@@ -1,3 +1,6 @@
+## [1.2.4] - 2021-08-04
+- fix: removed deprecated methods
+
 ## [1.2.3] - 2021-08-04
 - chore: added setup to the docs
 - chore: bumped required flutter version
