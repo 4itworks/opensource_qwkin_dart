@@ -12,7 +12,7 @@ A flutter plugin wrote to control `torch/flash` of the device.
 be released until `1.0.0` version
 
 ### Installing
-- Add `torch_controller: 0.2.1+2` to your pubspec.yaml
+- Add `torch_controller: 0.4.1` to your pubspec.yaml
 
 ### Usage
 
@@ -33,5 +33,10 @@ bool active = torchController.toggle();
 ```
 - You can check more specific docs right on methods documentation
 
-### Authors
-- [Rafael Carvalho Monteiro](https://github.com/rafaelcmm)
+### Contributors
+
+<a href="https://github.com/4itworks/opensource_qwkin_dart/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=4itworks/opensource_qwkin_dart" />
+</a>
+
+Made with [contributors-img](https://contrib.rocks).
