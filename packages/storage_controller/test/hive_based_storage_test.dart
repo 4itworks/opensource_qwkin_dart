@@ -1,5 +1,5 @@
-import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
+
 import 'package:storage_controller/src/hive_based_storage.dart';
 
 void main() {
@@ -9,11 +9,6 @@ void main() {
 
   group('Hive storage tests', () {
     setUpAll(() async {
-      const MethodChannel channel =
-          MethodChannel('plugins.flutter.io/path_provider');
-      channel.setMockMethodCallHandler((MethodCall methodCall) async {
-        return '.';
-      });
       await HiveBasedStorage.setup();
     });
 

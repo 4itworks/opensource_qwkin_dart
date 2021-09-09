@@ -1,8 +1,66 @@
-import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
+
 import 'package:storage_controller/src/hive_based_storage.dart';
 import 'package:storage_controller/src/shared_preferences_based_storage.dart';
 import 'package:storage_controller/storage_controller.dart';
+
+void main() {
+  TestWidgetsFlutterBinding.ensureInitialized();
+
+  late StorageController hiveStorageController;
+
+  group('Hive storage controller tests', () {
+    setUpAll(() async {
+      await StorageController.setup();
+    });
+
+    setUp(() async {
+      StorageController.prepareForTests();
+      hiveStorageController = MyHiveCustomStorage();
+
+      final initialized = await hiveStorageController.isInitialized;
+
+      expect(initialized, isTrue);
+    });
+
+    test('Was hive initialized on controller', () async {
+      expect(hiveStorageController.method, equals(StorageMethod.HIVE));
+      expect(
+          hiveStorageController.storageRuntimeType, equals(HiveBasedStorage));
+      expect(await hiveStorageController.isInitialized, isTrue);
+    });
+
+    test('Execute storage operations should work', () {
+      executeCommonActions(hiveStorageController);
+    });
+  });
+
+  group('Shared Preferences storage controller tests', () {
+    late MySPCustomStorage sharedPreferencesStorageController;
+
+    setUp(() async {
+      StorageController.prepareForTests();
+      sharedPreferencesStorageController = MySPCustomStorage();
+
+      final initialized =
+          await sharedPreferencesStorageController.isInitialized;
+
+      expect(initialized, isTrue);
+    });
+
+    test('Was hive initialized on controller', () async {
+      expect(sharedPreferencesStorageController.method,
+          equals(StorageMethod.SHARED_PREFERENCES));
+      expect(sharedPreferencesStorageController.storageRuntimeType,
+          equals(SharedPreferencesBasedStorage));
+      expect(await sharedPreferencesStorageController.isInitialized, isTrue);
+    });
+
+    test('Execute storage operations should work', () {
+      executeCommonActions(sharedPreferencesStorageController);
+    });
+  });
+}
 
 class MyHiveCustomStorage extends StorageController {
   MyHiveCustomStorage() : super.hive('myHiveCustomStorage');
@@ -68,67 +126,4 @@ void executeCommonActions(StorageController storageController) async {
   } on UnimplementedError catch (e) {
     expect(e, isInstanceOf<UnimplementedError>());
   }
-}
-
-void main() {
-  TestWidgetsFlutterBinding.ensureInitialized();
-
-  late StorageController hiveStorageController;
-
-  group('Hive storage controller tests', () {
-    setUpAll(() async {
-      const MethodChannel channel =
-          MethodChannel('plugins.flutter.io/path_provider');
-      channel.setMockMethodCallHandler((MethodCall methodCall) async {
-        return '.';
-      });
-      await StorageController.setup();
-    });
-
-    setUp(() async {
-      StorageController.prepareForTests();
-      hiveStorageController = MyHiveCustomStorage();
-
-      final initialized = await hiveStorageController.isInitialized;
-
-      expect(initialized, isTrue);
-    });
-
-    test('Was hive initialized on controller', () async {
-      expect(hiveStorageController.method, equals(StorageMethod.HIVE));
-      expect(
-          hiveStorageController.storageRuntimeType, equals(HiveBasedStorage));
-      expect(await hiveStorageController.isInitialized, isTrue);
-    });
-
-    test('Execute storage operations should work', () {
-      executeCommonActions(hiveStorageController);
-    });
-  });
-
-  group('Shared Preferences storage controller tests', () {
-    late MySPCustomStorage sharedPreferencesStorageController;
-
-    setUp(() async {
-      StorageController.prepareForTests();
-      sharedPreferencesStorageController = MySPCustomStorage();
-
-      final initialized =
-          await sharedPreferencesStorageController.isInitialized;
-
-      expect(initialized, isTrue);
-    });
-
-    test('Was hive initialized on controller', () async {
-      expect(sharedPreferencesStorageController.method,
-          equals(StorageMethod.SHARED_PREFERENCES));
-      expect(sharedPreferencesStorageController.storageRuntimeType,
-          equals(SharedPreferencesBasedStorage));
-      expect(await sharedPreferencesStorageController.isInitialized, isTrue);
-    });
-
-    test('Execute storage operations should work', () {
-      executeCommonActions(sharedPreferencesStorageController);
-    });
-  });
 }
