@@ -36,19 +36,18 @@ class TorchControllerPlugin() : FlutterPlugin, ActivityAware, MethodCallHandler 
   private var activity: Activity? = null
   private var ctx: Context? = null
 
-  init {
-
-  }
-
+  /** Plugin registration. Android V1 Embedding  */
   companion object {
     @JvmStatic
     fun registerWith(registrar: Registrar) {
+      var torchImpl = Torch(registrar.activity())
+
       val channel = MethodChannel(registrar.messenger(), "torch_control")
       val torchControllerPlugin = TorchControllerPlugin()
       torchControllerPlugin.activity = registrar.activity()
       channel.setMethodCallHandler(torchControllerPlugin)
 
-      registrar.activity.application.registerActivityLifecycleCallbacks(object : ActivityLifecycleCallbacks() {
+      torchControllerPlugin.activity!!.application.registerActivityLifecycleCallbacks(object : ActivityLifecycleCallbacks() {
         override fun onActivityStopped(activity: Activity) {
           torchImpl.dispose()
         }
@@ -56,6 +55,50 @@ class TorchControllerPlugin() : FlutterPlugin, ActivityAware, MethodCallHandler 
     }
   }
 
+  /** Plugin registration. Android V2 Embedding  */
+  private fun init(binaryMessenger: BinaryMessenger, applicationContext: Context) {
+    hasLamp = applicationContext.packageManager.hasSystemFeature(PackageManager.FEATURE_CAMERA_FLASH)
+
+    torchImpl = Torch(applicationContext)
+
+    Log.d(TAG, "init. Messanger:$binaryMessenger Context:$applicationContext")
+    val channel = MethodChannel(binaryMessenger, CHANNEL_QUERY)
+    channel.setMethodCallHandler(this)
+    ctx = applicationContext
+  }
+
+  override fun onAttachedToEngine(@NonNull flutterPluginBinding: FlutterPlugin.FlutterPluginBinding) {
+    Log.d(TAG, "onAttachedToEngine")
+    init(flutterPluginBinding.getBinaryMessenger(), flutterPluginBinding.getApplicationContext())
+  }
+
+  override fun onDetachedFromEngine(@NonNull flutterPluginBinding: FlutterPlugin.FlutterPluginBinding) {
+    Log.d(TAG, "onDetachedFromEngine")
+  }
+
+  override fun onDetachedFromActivityForConfigChanges() {
+    Log.d(TAG, "onDetachedFromActivityForConfigChanges")
+  }
+
+  override fun onReattachedToActivityForConfigChanges(@NonNull activityPluginBinding: ActivityPluginBinding) {
+    Log.d(TAG, "onReattachedToActivityForConfigChanges")
+  }
+
+  override fun onAttachedToActivity(@NonNull activityPluginBinding: ActivityPluginBinding) {
+    this.activityPluginBinding = activityPluginBinding
+//    this.activityPluginBinding!!.addRequestPermissionsResultListener(Permissions.getRequestsResultsListener())
+    Log.d(TAG, "onAttachedToActivity")
+  }
+
+  override fun onDetachedFromActivity() {
+    Log.d(TAG, "onDetachedFromActivity")
+    if (activityPluginBinding != null) {
+//      activityPluginBinding!!.removeRequestPermissionsResultListener(Permissions.getRequestsResultsListener())
+      activityPluginBinding = null
+    }
+  }
+
+  /** Plugin onMethodCall  */
   override fun onMethodCall(call: MethodCall, result: Result) {
     if (call.method == "toggleTorch") {
       if (!hasLamp) {
@@ -72,42 +115,6 @@ class TorchControllerPlugin() : FlutterPlugin, ActivityAware, MethodCallHandler 
       result.success(torchImpl.isTorchActive())
     } else {
       result.notImplemented()
-    }
-  }
-
-  /** Plugin registration.  */
-  private fun init(binaryMessenger: BinaryMessenger, applicationContext: Context) {
-    hasLamp = applicationContext.packageManager.hasSystemFeature(PackageManager.FEATURE_CAMERA_FLASH)
-
-    torchImpl = Torch(applicationContext)
-
-    Log.d(TAG, "init. Messanger:$binaryMessenger Context:$applicationContext")
-    val channel = MethodChannel(binaryMessenger, CHANNEL_QUERY)
-    channel.setMethodCallHandler(this)
-    ctx = applicationContext
-  }
-
-  override fun onAttachedToEngine(@NonNull flutterPluginBinding: FlutterPluginBinding) {
-    Log.d(TAG, "onAttachedToEngine")
-    init(flutterPluginBinding.getBinaryMessenger(), flutterPluginBinding.getApplicationContext())
-  }
-
-  override fun onDetachedFromEngine(@NonNull flutterPluginBinding: FlutterPluginBinding) {
-    //NO-OP
-    Log.d(TAG, "onDetachedFromEngine")
-  }
-
-  override fun onAttachedToActivity(@NonNull activityPluginBinding: ActivityPluginBinding) {
-    activityPluginBinding = activityPluginBinding
-    activityPluginBinding.addRequestPermissionsResultListener(Permissions.getRequestsResultsListener())
-    Log.d(TAG, "onAttachedToActivity")
-  }
-
-  override fun onDetachedFromActivity() {
-    Log.d(TAG, "onDetachedFromActivity")
-    if (activityPluginBinding != null) {
-      activityPluginBinding.removeRequestPermissionsResultListener(Permissions.getRequestsResultsListener())
-      activityPluginBinding = null
     }
   }
 
