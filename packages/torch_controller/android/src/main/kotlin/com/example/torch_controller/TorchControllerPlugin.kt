@@ -34,7 +34,7 @@ class TorchControllerPlugin() : FlutterPlugin, ActivityAware, MethodCallHandler 
 
   private var activityPluginBinding: ActivityPluginBinding? = null
   private var activity: Activity? = null
-  private var ctx: Context? = null
+  private var context: Context? = null
 
   /** Plugin registration. Android V1 Embedding  */
   companion object {
@@ -42,6 +42,7 @@ class TorchControllerPlugin() : FlutterPlugin, ActivityAware, MethodCallHandler 
     fun registerWith(registrar: Registrar) {
       var torchImpl = Torch(registrar.activity())
 
+//      val channel = MethodChannel(registrar.messenger(), "flutter/torch_control")
       val channel = MethodChannel(registrar.messenger(), "torch_control")
       val torchControllerPlugin = TorchControllerPlugin()
       torchControllerPlugin.activity = registrar.activity()
@@ -57,14 +58,13 @@ class TorchControllerPlugin() : FlutterPlugin, ActivityAware, MethodCallHandler 
 
   /** Plugin registration. Android V2 Embedding  */
   private fun init(binaryMessenger: BinaryMessenger, applicationContext: Context) {
-    hasLamp = applicationContext.packageManager.hasSystemFeature(PackageManager.FEATURE_CAMERA_FLASH)
-
-    torchImpl = Torch(applicationContext)
-
     Log.d(TAG, "init. Messanger:$binaryMessenger Context:$applicationContext")
+
+    hasLamp = applicationContext.packageManager.hasSystemFeature(PackageManager.FEATURE_CAMERA_FLASH)
+    torchImpl = Torch(applicationContext)
     val channel = MethodChannel(binaryMessenger, CHANNEL_QUERY)
     channel.setMethodCallHandler(this)
-    ctx = applicationContext
+    context = applicationContext
   }
 
   override fun onAttachedToEngine(@NonNull flutterPluginBinding: FlutterPlugin.FlutterPluginBinding) {
@@ -86,14 +86,12 @@ class TorchControllerPlugin() : FlutterPlugin, ActivityAware, MethodCallHandler 
 
   override fun onAttachedToActivity(@NonNull activityPluginBinding: ActivityPluginBinding) {
     this.activityPluginBinding = activityPluginBinding
-//    this.activityPluginBinding!!.addRequestPermissionsResultListener(Permissions.getRequestsResultsListener())
     Log.d(TAG, "onAttachedToActivity")
   }
 
   override fun onDetachedFromActivity() {
     Log.d(TAG, "onDetachedFromActivity")
     if (activityPluginBinding != null) {
-//      activityPluginBinding!!.removeRequestPermissionsResultListener(Permissions.getRequestsResultsListener())
       activityPluginBinding = null
     }
   }
