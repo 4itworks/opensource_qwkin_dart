@@ -42,7 +42,6 @@ class TorchControllerPlugin() : FlutterPlugin, ActivityAware, MethodCallHandler 
     fun registerWith(registrar: Registrar) {
       var torchImpl = Torch(registrar.activity())
 
-//      val channel = MethodChannel(registrar.messenger(), "flutter/torch_control")
       val channel = MethodChannel(registrar.messenger(), "torch_control")
       val torchControllerPlugin = TorchControllerPlugin()
       torchControllerPlugin.activity = registrar.activity()
