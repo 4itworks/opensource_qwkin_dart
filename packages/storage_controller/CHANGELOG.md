@@ -1,3 +1,7 @@
+## [1.2.5] - 2022-01-26
+- feat: Migrated to Android v2 Embedding 
+- chore: update libraries in use on storage_controller
+
 ## [1.2.4] - 2021-08-04
 - fix: removed deprecated methods
 
