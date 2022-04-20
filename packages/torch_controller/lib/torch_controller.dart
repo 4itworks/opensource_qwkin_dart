@@ -58,17 +58,20 @@ class TorchController {
 
   /// Execute the action to toggle torch on/off. Returns the current torch state.
   ///
-  /// double intensity: Define the desired intensity and set as default
+  /// double intensity: Define the desired intensity and set as default. This
+  /// parameter is ignored on Android.
   ///
   /// Example:
   ///
   /// final controller = TorchController();
   ///
-  /// controller.toggle() // Activates the torch and returns true;
-  /// controller.toggle() // Deactivates the torch and returns false;
+  /// ```dart
+  /// controller.toggle(); // Activates the torch and returns true;
+  /// controller.toggle(); // Deactivates the torch and returns false;
+  /// ```
   Future<bool?> toggle({double? intensity}) async {
     if (Platform.isAndroid && intensity != null) {
-      throw (AssertionError("You can only control torch intensity on iOS"));
+      debugPrint("Warning: Torch intensity is not available on Android");
     }
 
     if (intensity != null) {
