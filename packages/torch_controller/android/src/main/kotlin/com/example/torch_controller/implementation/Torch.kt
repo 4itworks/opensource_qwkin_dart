@@ -1,10 +1,9 @@
-package android.src.main.kotlin.com.example.torch_controller.implementation
+package com.example.torch_controller.implementation
 
 import android.content.Context
-import android.hardware.camera2.CameraCharacteristics
 import android.hardware.camera2.CameraManager
 import android.os.Build
-import android.src.main.kotlin.com.example.torch_controller.classes.BaseTorch
+import com.example.torch_controller.classes.BaseTorch
 import androidx.annotation.RequiresApi
 
 @RequiresApi(Build.VERSION_CODES.M)
