@@ -24,10 +24,10 @@ class _MyAppState extends State<MyApp> {
         body: Center(
           child: Column(
             children: [
-              FutureBuilder(
+              FutureBuilder<bool?>(
                   future: controller.isTorchActive,
                   builder: (_, snapshot) {
-                    final snapshotData = snapshot.data as bool;
+                    final snapshotData = snapshot.data ?? false;
 
                     if (snapshot.connectionState == ConnectionState.done)
                       return Text(
