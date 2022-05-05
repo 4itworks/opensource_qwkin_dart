@@ -27,9 +27,11 @@ class _MyAppState extends State<MyApp> {
               FutureBuilder(
                   future: controller.isTorchActive,
                   builder: (_, snapshot) {
+                    final snapshotData = snapshot.data as bool;
+
                     if (snapshot.connectionState == ConnectionState.done)
                       return Text(
-                          'Is torch on? ${snapshot.data ? 'Yes!' : 'No :('}');
+                          'Is torch on? ${snapshotData ? 'Yes!' : 'No :('}');
 
                     return Container();
                   }),
