@@ -30,9 +30,7 @@ jobs:
       - name: "Install Tools"
         run: |
           ./.github/workflows/scripts/install-tools.sh
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          
+
   analyze:
     timeout-minutes: 15
     runs-on: ubuntu-latest
