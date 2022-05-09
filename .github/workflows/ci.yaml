@@ -1,7 +1,6 @@
 name: Continuous Integration
 
-on:
-  [pull_request, workflow_dispatch]
+on: [pull_request, workflow_dispatch]
 
 jobs:
   setup:
@@ -24,7 +23,7 @@ jobs:
           key: ${{ runner.os }}-flutter-2.0.x
       - uses: subosito/flutter-action@v1.4.0
         with:
-          channel: 'stable'
+          channel: "stable"
       - name: "Prepare Flutter Environment"
         run: ./.github/workflows/scripts/prepare-env.sh
       - name: "Install Tools"
@@ -55,8 +54,8 @@ jobs:
       - name: Configuring flutter environment
         uses: subosito/flutter-action@v1.4.0
         with:
-          flutter-version: '2.0.x'
-          channel: 'stable'
+          flutter-version: "2.10.x"
+          channel: "stable"
       - name: "Prepare Flutter Environment"
         run: ./.github/workflows/scripts/prepare-env.sh
       - name: "Install Tools"
@@ -91,8 +90,8 @@ jobs:
       - name: Configuring flutter environment
         uses: subosito/flutter-action@v1.4.0
         with:
-          flutter-version: '2.0.x'
-          channel: 'stable'
+          flutter-version: "2.10.x"
+          channel: "stable"
       - name: "Prepare Flutter Environment"
         run: ./.github/workflows/scripts/prepare-env.sh
       - name: "Install Tools"
@@ -130,8 +129,8 @@ jobs:
       - name: Configuring flutter environment
         uses: subosito/flutter-action@v1.4.0
         with:
-          flutter-version: '2.0.x'
-          channel: 'stable'
+          flutter-version: "2.10.x"
+          channel: "stable"
       - name: "Prepare Flutter Environment"
         run: ./.github/workflows/scripts/prepare-env.sh
       - name: "Install Tools"
@@ -165,8 +164,8 @@ jobs:
       - name: Configuring flutter environment
         uses: subosito/flutter-action@v1.4.0
         with:
-          flutter-version: '2.0.x'
-          channel: 'stable'
+          flutter-version: "2.10.x"
+          channel: "stable"
       - name: "Prepare Flutter Environment"
         run: ./.github/workflows/scripts/prepare-env.sh
       - name: "Install Tools"
@@ -174,7 +173,7 @@ jobs:
       - name: "Bootstrap Workspace"
         run: melos bootstrap
       - name: "Flutter Test"
-        run:  melos run test:torch:controller
+        run: melos run test:torch:controller
 
   test_storage_controller:
     runs-on: ubuntu-latest
@@ -200,8 +199,8 @@ jobs:
       - name: Configuring flutter environment
         uses: subosito/flutter-action@v1.4.0
         with:
-          flutter-version: '2.0.x'
-          channel: 'stable'
+          flutter-version: "2.10.x"
+          channel: "stable"
       - name: "Prepare Flutter Environment"
         run: ./.github/workflows/scripts/prepare-env.sh
       - name: "Install Tools"
@@ -209,4 +208,4 @@ jobs:
       - name: "Bootstrap Workspace"
         run: melos bootstrap
       - name: "Flutter Test"
-        run:  melos run test:storage:controller
+        run: melos run test:storage:controller
