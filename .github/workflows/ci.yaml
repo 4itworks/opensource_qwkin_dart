@@ -20,8 +20,8 @@ jobs:
         uses: actions/cache@v2
         with:
           path: ${{ matrix.flutter_path }}
-          key: ${{ runner.os }}-flutter-2.0.x
-      - uses: subosito/flutter-action@v1.4.0
+          key: ${{ runner.os }}-flutter-2.10.x
+      - uses: subosito/flutter-action@v2
         with:
           channel: "stable"
       - name: "Prepare Flutter Environment"
@@ -50,9 +50,9 @@ jobs:
         uses: actions/cache@v2
         with:
           path: /opt/hostedtoolcache/flutter
-          key: ${{ runner.os }}-flutter-2.0.x
+          key: ${{ runner.os }}-flutter-2.10.x
       - name: Configuring flutter environment
-        uses: subosito/flutter-action@v1.4.0
+        uses: subosito/flutter-action@v2
         with:
           flutter-version: "2.10.x"
           channel: "stable"
@@ -86,9 +86,9 @@ jobs:
         uses: actions/cache@v2
         with:
           path: /opt/hostedtoolcache/flutter
-          key: ${{ runner.os }}-flutter-2.0.x
+          key: ${{ runner.os }}-flutter-2.10.x
       - name: Configuring flutter environment
-        uses: subosito/flutter-action@v1.4.0
+        uses: subosito/flutter-action@v2
         with:
           flutter-version: "2.10.x"
           channel: "stable"
@@ -125,9 +125,9 @@ jobs:
         uses: actions/cache@v2
         with:
           path: /opt/hostedtoolcache/flutter
-          key: ${{ runner.os }}-flutter-2.0.x
+          key: ${{ runner.os }}-flutter-2.10.x
       - name: Configuring flutter environment
-        uses: subosito/flutter-action@v1.4.0
+        uses: subosito/flutter-action@v2
         with:
           flutter-version: "2.10.x"
           channel: "stable"
@@ -160,9 +160,9 @@ jobs:
         uses: actions/cache@v2
         with:
           path: /opt/hostedtoolcache/flutter
-          key: ${{ runner.os }}-flutter-2.0.x
+          key: ${{ runner.os }}-flutter-2.10.x
       - name: Configuring flutter environment
-        uses: subosito/flutter-action@v1.4.0
+        uses: subosito/flutter-action@v2
         with:
           flutter-version: "2.10.x"
           channel: "stable"
@@ -195,9 +195,9 @@ jobs:
         uses: actions/cache@v2
         with:
           path: /opt/hostedtoolcache/flutter
-          key: ${{ runner.os }}-flutter-2.0.x
+          key: ${{ runner.os }}-flutter-2.10.x
       - name: Configuring flutter environment
-        uses: subosito/flutter-action@v1.4.0
+        uses: subosito/flutter-action@v2
         with:
           flutter-version: "2.10.x"
           channel: "stable"
