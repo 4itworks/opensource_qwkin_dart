@@ -15,7 +15,7 @@ jobs:
       - name: "Danger Run"
         run: yarn danger
         env:
-          DANGER_GITHUB_API_TOKEN: ${{ secrets.QWKIN_TOKEN_OS }}
+          DANGER_GITHUB_API_TOKEN: ${{ secrets.QWKIN_TOKEN }}
       - name: Get yarn cache directory path
         id: yarn-cache-dir-path
         run: echo "::set-output name=dir::$(yarn cache dir)"
