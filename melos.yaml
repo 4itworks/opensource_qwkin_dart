@@ -32,7 +32,7 @@ scripts:
   ## BE CAREFUL USING THIS
   publish:packages: >
     melos exec -c 1 --fail-fast --ignore="*example*" -- \
-    flutter pub publish
+    flutter pub publish --force
 
   # Additional cleanup lifecycle script, executed when `melos clean` is ran.
   postclean: >
