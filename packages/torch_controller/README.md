@@ -7,12 +7,8 @@
 # torch_controller
 A flutter plugin wrote to control `torch/flash` of the device.
 
-### Disclaimer
-- For now, the package is only available for `iOS`. Android version will
-be released until `1.0.0` version
-
 ### Installing
-- Add `torch_controller: 0.4.1` to your pubspec.yaml
+- Add `torch_controller: ^1.0.0` to your pubspec.yaml
 
 ### Usage
 
