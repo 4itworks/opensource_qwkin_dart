@@ -31,7 +31,7 @@ scripts:
 
   ## BE CAREFUL USING THIS
   publish:packages: >
-    melos exec -c 1 --fail-fast -- \
+    melos exec -c 1 --fail-fast --ignore="*example*" -- \
     flutter pub publish
 
   # Additional cleanup lifecycle script, executed when `melos clean` is ran.
