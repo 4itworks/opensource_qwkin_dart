@@ -1,20 +1,20 @@
 name: storage_controller
 description: A controller to manage storage device resource. We give you access to n storages to manage your data.
-version: 1.2.4
+version: 1.2.5
 homepage: https://github.com/4itworks/opensource_qwkin_dart
 
 environment:
-  sdk: ">=2.12.0 <3.0.0"
-  flutter: ">=2.0.0"
+  sdk: ">=2.14.0 <3.0.0"
+  flutter: ">=2.10.0"
 
 dependencies:
   flutter:
     sdk: flutter
-  shared_preferences: ^2.0.3
-  hive: ^2.0.0
-  hive_flutter: ^1.0.0
+  shared_preferences: ^2.0.13
+  hive: ^2.1.0
+  hive_flutter: ^1.1.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  mockito: ^5.0.0
+  mockito: ^5.1.0

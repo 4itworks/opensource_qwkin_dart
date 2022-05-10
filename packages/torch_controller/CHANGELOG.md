@@ -1,3 +1,6 @@
+## [0.4.2] - 2022-05-05
+- feat: Migrated to Android v2 Embedding 
+  
 ## [0.4.1] - 2021-9-9
 - feat: added support to android 21 (5.0)
 
