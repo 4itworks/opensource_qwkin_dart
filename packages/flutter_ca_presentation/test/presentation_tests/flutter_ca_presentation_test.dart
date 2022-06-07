@@ -7,9 +7,7 @@ import 'view_model.dart';
 
 void main() {
   Widget widget = MultiProvider(
-      providers: [
-        ChangeNotifierProvider.value(value: CounterViewModel())
-      ],
+      providers: [ChangeNotifierProvider.value(value: CounterViewModel())],
       child: MaterialApp(
         home: Builder(builder: (_) => const CounterView()),
       ));
