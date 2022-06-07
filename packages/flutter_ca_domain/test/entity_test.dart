@@ -11,7 +11,7 @@ class ImplementedEntity extends Entity {
 }
 
 void main() {
-  test('adds one to input values', () {
+  test('Test abstract entity methods', () {
     final entity = ImplementedEntity();
     expect(entity.copyWith(), isInstanceOf<ImplementedEntity>());
     expect(entity.map, equals({}));
