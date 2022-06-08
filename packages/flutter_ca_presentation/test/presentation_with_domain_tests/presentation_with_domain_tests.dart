@@ -7,9 +7,7 @@ import 'view_model.dart';
 
 void main() {
   Widget widget = MultiProvider(
-      providers: [
-        ChangeNotifierProvider.value(value: MovieViewModel())
-      ],
+      providers: [ChangeNotifierProvider.value(value: MovieViewModel())],
       child: MaterialApp(
         home: Builder(builder: (_) => const MovieView()),
       ));
