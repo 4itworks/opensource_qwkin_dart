@@ -62,6 +62,13 @@ packages:
       relative: true
     source: path
     version: "0.0.1"
+  flutter_ca_data:
+    dependency: "direct overridden"
+    description:
+      path: "../../flutter_ca_data"
+      relative: true
+    source: path
+    version: "0.0.1"
   flutter_ca_domain:
     dependency: "direct overridden"
     description:
