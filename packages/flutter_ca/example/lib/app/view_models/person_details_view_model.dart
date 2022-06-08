@@ -15,6 +15,7 @@ class PersonDetailsViewModel extends ViewModel {
   PersonDetailsViewModel(this.personRepository);
 
   void generatePerson() {
+    start();
     generatePersonByIdUseCase();
   }
 

@@ -3,6 +3,9 @@ import 'package:flutter_ca_example/app/view_models/person_details_view_model.dar
 import 'package:flutter_ca_example/data/data.dart';
 
 final viewModels = [
-  Dependency.lazy(
-      (_) => PersonDetailsViewModel(PersonApiRepository(ApiDataSource())))
+  Dependency.proxy<PersonApiRepository, PersonDetailsViewModel>(
+      create: (_) =>
+          PersonDetailsViewModel(PersonApiRepository(ApiDataSource())),
+      update: (_, personApiRepository, personDetailsViewModel) =>
+          PersonDetailsViewModel(personApiRepository)),
 ];
