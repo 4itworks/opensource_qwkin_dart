@@ -9,17 +9,23 @@ class PersonDetailsView extends StatelessView<PersonDetailsViewModel> {
   Widget builder(BuildContext context, PersonDetailsViewModel viewModel) {
     return Scaffold(
       key: GlobalKey(),
-      body: SingleChildScrollView(
+      appBar: AppBar(
+        title: const Text('Person Generator'),
+      ),
+      body: Center(
+          child: Padding(
+        padding: const EdgeInsets.all(10),
         child: Column(
           children: [
             Text(viewModel.person?.name ?? 'No Person'),
             MaterialButton(
+              color: Theme.of(context).primaryColor,
               onPressed: viewModel.generatePerson,
               child: const Text('Fetch Person'),
             ),
           ],
         ),
-      ),
+      )),
     );
   }
 }
