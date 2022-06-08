@@ -1,18 +1,17 @@
-import 'package:flutter/cupertino.dart';
-import 'package:flutter_ca_domain/flutter_ca_domain.dart';
+import 'package:flutter_ca/flutter_ca.dart';
 
 import 'person_entity.dart';
 
-class DataSource with ChangeNotifier {}
+class ConcreteDataSource extends DataSource {}
 
-abstract class PersonRepository<DataSource> extends Repository<DataSource> {
-  PersonRepository(DataSource dataSource) : super(dataSource);
-
+abstract class PersonRepository extends Repository {
   Future<Person> get(String id);
 }
 
-class PersonApiRepository extends PersonRepository<DataSource> {
-  PersonApiRepository(DataSource dataSource) : super(dataSource);
+class PersonApiRepository extends PersonRepository {
+  final ConcreteDataSource dataSource;
+
+  PersonApiRepository(this.dataSource);
 
   @override
   Future<Person> get(String id) async => const Person('John Doe');

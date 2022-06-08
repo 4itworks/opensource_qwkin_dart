@@ -10,15 +10,15 @@ import 'person_sample/person_view.dart';
 void main() {
   final widget = DependencyInjector(
       startups: [
-        Dependency.single<DataSource>((_) => DataSource())
+        Dependency.single<ConcreteDataSource>((_) => ConcreteDataSource())
       ],
       repositories: [
         Dependency.lazy<PersonApiRepository>(
-            (_) => PersonApiRepository(DataSource()))
+            (_) => PersonApiRepository(ConcreteDataSource()))
       ],
       viewModels: [
-        Dependency.lazy<PersonDetailsViewModel>(
-            (_) => PersonDetailsViewModel(PersonApiRepository(DataSource())))
+        Dependency.lazy<PersonDetailsViewModel>((_) =>
+            PersonDetailsViewModel(PersonApiRepository(ConcreteDataSource())))
       ],
       child: const MaterialApp(
         home: PersonView(),
