@@ -14,7 +14,7 @@ class MovieViewModel extends ViewModel {
   }
 
   @override
-  void initListeners() {
+  void initializeUseCases() {
     getMovieUseCase = GetMovieUseCase(UseCaseWatcher(onNext: (Movie? m) {
       movie = m;
       notifyListeners();

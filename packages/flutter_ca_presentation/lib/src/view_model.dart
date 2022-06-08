@@ -1,7 +1,6 @@
 import 'package:flutter/foundation.dart';
-import 'package:flutter_ca_domain/flutter_ca_domain.dart';
 
-abstract class ViewModel extends Disposable with ChangeNotifier {
+abstract class ViewModel with ChangeNotifier {
   bool _busy = false;
   bool get busy => _busy;
 
@@ -15,8 +14,10 @@ abstract class ViewModel extends Disposable with ChangeNotifier {
 
   @mustCallSuper
   ViewModel() {
-    initListeners();
+    initializeWatchers();
+    initializeUseCases();
   }
 
-  void initListeners() {}
+  void initializeWatchers() {}
+  void initializeUseCases() {}
 }

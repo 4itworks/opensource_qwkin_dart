@@ -2,31 +2,42 @@ import 'package:flutter/cupertino.dart';
 import 'package:provider/provider.dart';
 
 class Dependency {
-  static ChangeNotifierProvider value<T extends ChangeNotifier>(T value) =>
-      ChangeNotifierProvider.value(value: value);
-  static ChangeNotifierProvider lazy(
-          ChangeNotifier? Function(BuildContext) builder) =>
-      ChangeNotifierProvider(create: builder, lazy: true);
-  static ProxyProvider<T, V> proxy<T, V extends ChangeNotifier>(
-          V Function(BuildContext, T, V?) builder,
-          {bool lazy = true}) =>
-      ProxyProvider<T, V>(
-        update: builder,
+  static ChangeNotifierProvider value<T extends ChangeNotifier>(
+          {required T value}) =>
+      ChangeNotifierProvider<T>.value(value: value);
+  static ChangeNotifierProvider single<T extends ChangeNotifier>(
+          T Function(BuildContext) create) =>
+      ChangeNotifierProvider<T>(create: create);
+  static ChangeNotifierProvider lazy<T extends ChangeNotifier>(
+          T Function(BuildContext) create) =>
+      ChangeNotifierProvider<T>(create: create, lazy: true);
+  static ChangeNotifierProxyProvider<T, V> proxy<T, V extends ChangeNotifier>(
+          {bool lazy = true,
+          required V Function(BuildContext) create,
+          required V Function(BuildContext, T, V?) update}) =>
+      ChangeNotifierProxyProvider<T, V>(
+        create: create,
+        update: update,
         lazy: lazy,
       );
-  static ProxyProvider2<T, T1, V> proxy2<T, T1, V extends ChangeNotifier>(
-          V Function(BuildContext, T, T1, V?) builder,
-          {bool lazy = true}) =>
-      ProxyProvider2<T, T1, V>(
-        update: builder,
-        lazy: lazy,
-      );
-  static ProxyProvider3<T, T1, T2, V>
+  static ChangeNotifierProxyProvider2<T, T1, V>
+      proxy2<T, T1, V extends ChangeNotifier>(
+              {bool lazy = true,
+              required V Function(BuildContext) create,
+              required V Function(BuildContext, T, T1, V?) update}) =>
+          ChangeNotifierProxyProvider2<T, T1, V>(
+            create: create,
+            update: update,
+            lazy: lazy,
+          );
+  static ChangeNotifierProxyProvider3<T, T1, T2, V>
       proxy3<T, T1, T2, V extends ChangeNotifier>(
-              V Function(BuildContext, T, T1, T2, V?) builder,
-              {bool lazy = true}) =>
-          ProxyProvider3<T, T1, T2, V>(
-            update: builder,
+              {bool lazy = true,
+              required V Function(BuildContext) create,
+              required V Function(BuildContext, T, T1, T2, V?) update}) =>
+          ChangeNotifierProxyProvider3<T, T1, T2, V>(
+            create: create,
+            update: update,
             lazy: lazy,
           );
 }
