@@ -1,3 +1,6 @@
+## [1.2.6] - 2022-06-09
+- Updated LICENSE
+
 ## [1.2.5] - 2022-01-26
 - chore: update libraries in use on storage_controller
 

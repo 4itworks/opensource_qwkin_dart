@@ -1,3 +1,6 @@
+## [1.0.1] - 2022-06-09
+- Updated LICENSE
+
 ## [1.0.0] - 2022-05-05
 - feat: Migrated to Android v2 Embedding 
 - Added full android support
