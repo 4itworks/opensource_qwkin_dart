@@ -1,6 +1,6 @@
 name: flutter_ca_presentation
-description: A new Flutter package project.
-version: 0.0.1
+description: Presentation layer for flutter_ca
+version: 0.1.0
 homepage:
 
 environment:
@@ -11,8 +11,7 @@ dependencies:
   flutter:
     sdk: flutter
   provider: ^6.0.3
-  flutter_ca_domain:
-    path: ../flutter_ca_domain
+  flutter_ca_domain: ^0.1.0
 
 dev_dependencies:
   flutter_test:

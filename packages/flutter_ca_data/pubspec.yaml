@@ -1,6 +1,6 @@
 name: flutter_ca_data
-description: A new Flutter package project.
-version: 0.0.1
+description: Data layer for flutter_ca
+version: 0.1.0
 homepage:
 
 environment:
