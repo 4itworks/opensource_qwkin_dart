@@ -13,7 +13,6 @@ abstract class StatefulView extends StatefulWidget {
 
 abstract class ViewState<View extends StatefulView, VM extends ViewModel>
     extends State<View> {
-
   Widget builder(BuildContext context, VM viewModel);
 
   @override

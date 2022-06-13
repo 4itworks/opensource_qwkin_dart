@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:provider/provider.dart';
 
+import 'stateful_view.dart';
 import 'view.dart';
 import 'view_model.dart';
 
@@ -10,6 +11,12 @@ void main() {
       providers: [ChangeNotifierProvider.value(value: CounterViewModel())],
       child: MaterialApp(
         home: Builder(builder: (_) => const CounterView()),
+      ));
+
+  Widget statefulWidget = MultiProvider(
+      providers: [ChangeNotifierProvider.value(value: CounterViewModel())],
+      child: MaterialApp(
+        home: Builder(builder: (_) => const StatefulCounterView()),
       ));
 
   testWidgets('Should render CounterView', (WidgetTester tester) async {
@@ -23,6 +30,25 @@ void main() {
 
   testWidgets('Should execute changes on view', (WidgetTester tester) async {
     await tester.pumpWidget(widget);
+
+    final increaseButton = find.text('Increase');
+    final decreaseButton = find.text('Decrease');
+
+    expect(increaseButton, findsOneWidget);
+    expect(decreaseButton, findsOneWidget);
+
+    await tester.tap(increaseButton);
+    await tester.pumpAndSettle();
+    expect(find.text('1'), findsOneWidget);
+
+    await tester.tap(decreaseButton);
+    await tester.pumpAndSettle();
+    expect(find.text('0'), findsOneWidget);
+  });
+
+  testWidgets('Should execute same changes on stateful view',
+      (WidgetTester tester) async {
+    await tester.pumpWidget(statefulWidget);
 
     final increaseButton = find.text('Increase');
     final decreaseButton = find.text('Decrease');
