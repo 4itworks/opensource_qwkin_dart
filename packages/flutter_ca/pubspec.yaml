@@ -1,6 +1,6 @@
 name: flutter_ca
 description: A framework to implement clean architecture for flutter
-version: 0.1.1
+version: 0.2.0
 homepage:
 
 environment:
@@ -11,9 +11,9 @@ dependencies:
   flutter:
     sdk: flutter
   provider: ^6.0.3
-  flutter_ca_domain: ^0.1.0
-  flutter_ca_presentation: ^0.1.0
-  flutter_ca_data: ^0.1.0
+  flutter_ca_domain: ^0.2.0
+  flutter_ca_presentation: ^0.2.0
+  flutter_ca_data: ^0.2.0
 
 dev_dependencies:
   flutter_test:

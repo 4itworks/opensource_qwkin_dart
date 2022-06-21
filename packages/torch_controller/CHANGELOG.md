@@ -1,3 +1,6 @@
+## [1.1.0-pre.1] - 2022-06-21
+- Added support to Flutter 3
+
 ## [1.0.1] - 2022-06-09
 - Updated LICENSE
 
