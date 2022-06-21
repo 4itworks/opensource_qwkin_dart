@@ -1,6 +1,6 @@
 name: flutter_ca_presentation
 description: Presentation layer for flutter_ca
-version: 0.2.0
+version: 0.2.1
 homepage:
 
 environment:
@@ -11,7 +11,7 @@ dependencies:
   flutter:
     sdk: flutter
   provider: ^6.0.3
-  flutter_ca_domain: ^0.1.0
+  flutter_ca_domain: ^0.2.0
 
 dev_dependencies:
   flutter_test:

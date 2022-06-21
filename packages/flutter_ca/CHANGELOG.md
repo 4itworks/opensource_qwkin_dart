@@ -1,3 +1,6 @@
+## [0.2.1] - 2022-06-21
+- fix: wrong version mismatch deps
+
 ## [0.2.0] - 2022-06-21
 - Added support to Flutter 3
 
