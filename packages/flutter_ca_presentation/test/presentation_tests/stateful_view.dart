@@ -15,11 +15,6 @@ class _CounterViewState
     extends ViewState<StatefulCounterView, CounterViewModel> {
 
   @override
-  void didChangeViewModel(BuildContext context, CounterViewModel viewModel) {
-    print(viewModel.value);
-  }
-
-  @override
   Widget builder(BuildContext context, CounterViewModel viewModel) {
     return Scaffold(
       key: GlobalKey(),

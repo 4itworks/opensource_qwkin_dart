@@ -36,7 +36,7 @@ abstract class ViewState<View extends StatefulView, VM extends ViewModel>
     });
   }
 
-  @override
+  @overrideg
   void didChangeAppLifecycleState(AppLifecycleState state) {
     final viewModel = context.read<VM>();
 
