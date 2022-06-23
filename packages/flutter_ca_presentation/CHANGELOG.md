@@ -1,3 +1,6 @@
+## [0.2.3] - 2022-06-23
+- feat: added `didChangeViewModel` and lifecycles to `ViewState`
+
 ## [0.2.2] - 2022-06-21
 - feat: added `StatefulView` to export
 

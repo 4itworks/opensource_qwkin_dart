@@ -1,4 +1,8 @@
-## [0.2.1] - 2022-06-21
+## [0.2.3] - 2022-06-23
+- feat: added support for last `flutter_ca_presentation`
+- fix: fixed typo on `CHANGELOG.md`
+
+## [0.2.2] - 2022-06-21
 - feat: added support for `StatefulView`
 
 ## [0.2.1] - 2022-06-21
