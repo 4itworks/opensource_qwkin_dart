@@ -13,6 +13,7 @@ class StatefulCounterView extends StatefulView {
 
 class _CounterViewState
     extends ViewState<StatefulCounterView, CounterViewModel> {
+
   @override
   Widget builder(BuildContext context, CounterViewModel viewModel) {
     return Scaffold(

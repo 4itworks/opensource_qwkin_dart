@@ -9,14 +9,14 @@ import 'view_model.dart';
 void main() {
   Widget widget = MultiProvider(
       providers: [ChangeNotifierProvider.value(value: CounterViewModel())],
-      child: MaterialApp(
-        home: Builder(builder: (_) => const CounterView()),
+      child: const MaterialApp(
+        home: CounterView(),
       ));
 
   Widget statefulWidget = MultiProvider(
       providers: [ChangeNotifierProvider.value(value: CounterViewModel())],
-      child: MaterialApp(
-        home: Builder(builder: (_) => const StatefulCounterView()),
+      child: const MaterialApp(
+        home: StatefulCounterView(),
       ));
 
   testWidgets('Should render CounterView', (WidgetTester tester) async {
