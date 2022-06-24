@@ -1,3 +1,6 @@
+## [0.2.5] - 2022-06-24
+- feat: changed `initViewModel` on `ViewState` to `initState`
+
 ## [0.2.4] - 2022-06-24
 - feat: added `initViewModel` to `ViewState`
 - feat: QOL changes on `ViewModel`
