@@ -14,10 +14,10 @@ scripts:
       flutter analyze .
 
   # Formats the code of all packages (Java, Objective-C, and Dart).
-  #  - Requires `flutter_plugin_tools` (`flutter pub global activate flutter_plugin_tools`).
+  #  - Requires `flutter_plugin_tools` (`dart pub global activate flutter_plugin_tools`).
   #  - Requires `git`.
   #  - Requires `clang-format` (can be installed via Brew on MacOS / apt on Ubuntu based).
-  format: flutter pub global run flutter_plugin_tools format --shardIndex 0 --shardCount 3
+  format: dart pub global run flutter_plugin_tools format --shardIndex 0 --shardCount 3
 
   format:dart: flutter format .
 
