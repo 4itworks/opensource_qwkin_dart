@@ -1,3 +1,6 @@
+## [0.2.4] - 2022-06-23
+- feat: added support for last `flutter_ca_presentation`
+
 ## [0.2.3] - 2022-06-23
 - feat: added support for last `flutter_ca_presentation`
 - fix: fixed typo on `CHANGELOG.md`

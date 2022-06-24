@@ -13,6 +13,8 @@ abstract class StatefulView extends StatefulWidget {
 
 abstract class ViewState<View extends StatefulView, VM extends ViewModel>
     extends State<View> with WidgetsBindingObserver{
+  bool _isInitialized = false;
+
   late bool _isMounted;
 
   ViewState() {
@@ -23,6 +25,8 @@ abstract class ViewState<View extends StatefulView, VM extends ViewModel>
   void detached(VM viewModel) {}
   void paused(VM viewModel) {}
   void resumed(VM viewModel) {}
+
+  void initViewModel(BuildContext context, VM viewModel) {}
   void didChangeViewModel(BuildContext context, VM viewModel) {}
 
   Widget builder(BuildContext context, VM viewModel);
@@ -31,7 +35,15 @@ abstract class ViewState<View extends StatefulView, VM extends ViewModel>
   @nonVirtual
   Widget build(BuildContext context) {
     return Consumer<VM>(builder: (context, viewModel, _) {
-      WidgetsBinding.instance.addPostFrameCallback((_) => didChangeViewModel(context, viewModel));
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (!_isInitialized) {
+          initViewModel(context, viewModel);
+          setState(() {
+            _isInitialized = true;
+          });
+        }
+        didChangeViewModel(context, viewModel);
+      });
       return builder(context, viewModel);
     });
   }
