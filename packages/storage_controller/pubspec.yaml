@@ -4,17 +4,17 @@ version: 1.2.5
 homepage: https://github.com/4itworks/opensource_qwkin_dart
 
 environment:
-  sdk: ">=2.14.0 <3.0.0"
-  flutter: ">=2.10.0"
+  sdk: ">=2.17.3 <3.0.0"
+  flutter: ">=3.0.0 <4.0.0"
 
 dependencies:
   flutter:
     sdk: flutter
-  shared_preferences: ^2.0.13
-  hive: ^2.1.0
+  shared_preferences: ^2.0.15
+  hive: ^2.2.0
   hive_flutter: ^1.1.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  mockito: ^5.1.0
+  mockito: ^5.2.0

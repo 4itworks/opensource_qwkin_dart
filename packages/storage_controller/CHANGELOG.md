@@ -1,3 +1,10 @@
+## [2.0.0] - 2022-06-24
+- chore: Update [StorageController] and [TorchController] to use Flutter 3
+- chore: Update [StorageController] and [TorchController] dependencies to the newest versions
+
+**BREAKING CHANGES**
+- Migrated to Flutter 3
+
 ## [1.2.5] - 2022-01-26
 - chore: update libraries in use on storage_controller
 

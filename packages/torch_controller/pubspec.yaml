@@ -4,9 +4,8 @@ version: 1.0.0
 homepage: https://github.com/4itworks/opensource_qwkin_dart
 
 environment:
-  sdk: ">=2.13.4 <3.0.0"
-  flutter: ">=2.2.3"
-
+  sdk: ">=2.17.3 <3.0.0"
+  flutter: ">=3.0.0 <4.0.0"
 dependencies:
   flutter:
     sdk: flutter
