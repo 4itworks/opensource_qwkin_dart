@@ -61,7 +61,7 @@ packages:
       path: ".."
       relative: true
     source: path
-    version: "0.2.0"
+    version: "0.2.3"
   flutter_ca_data:
     dependency: "direct overridden"
     description:
@@ -82,7 +82,7 @@ packages:
       path: "../../flutter_ca_presentation"
       relative: true
     source: path
-    version: "0.2.0"
+    version: "0.2.3"
   flutter_lints:
     dependency: "direct dev"
     description:
