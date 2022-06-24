@@ -1,3 +1,10 @@
+## [2.0.0] - 2022-06-24
+- feat: Update [TorchController] to use Flutter 3
+- feat: Update [TorchController] dependencies to the newest versions
+
+**BREAKING CHANGES**
+- Migrated to Flutter 3
+
 ## [1.1.0-pre.1] - 2022-06-21
 - Added support to Flutter 3
 
