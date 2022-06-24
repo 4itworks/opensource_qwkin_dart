@@ -20,7 +20,7 @@ jobs:
         uses: actions/cache@v2
         with:
           path: ${{ matrix.flutter_path }}
-          key: ${{ runner.os }}-flutter-3.0.2
+          key: ${{ runner.os }}-flutter-3.0.0
       - uses: subosito/flutter-action@v2
         with:
           channel: "stable"
@@ -50,11 +50,11 @@ jobs:
         uses: actions/cache@v2
         with:
           path: /opt/hostedtoolcache/flutter
-          key: ${{ runner.os }}-flutter-3.0.2
+          key: ${{ runner.os }}-flutter-3.0.0
       - name: Configuring flutter environment
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: "3.0.2"
+          flutter-version: "3.0.0"
           channel: "stable"
       - name: "Prepare Flutter Environment"
         run: ./.github/workflows/scripts/prepare-env.sh
@@ -86,11 +86,11 @@ jobs:
         uses: actions/cache@v2
         with:
           path: /opt/hostedtoolcache/flutter
-          key: ${{ runner.os }}-flutter-3.0.2
+          key: ${{ runner.os }}-flutter-3.0.0
       - name: Configuring flutter environment
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: "3.0.2"
+          flutter-version: "3.0.0"
           channel: "stable"
       - name: "Prepare Flutter Environment"
         run: ./.github/workflows/scripts/prepare-env.sh
@@ -125,11 +125,11 @@ jobs:
         uses: actions/cache@v2
         with:
           path: /opt/hostedtoolcache/flutter
-          key: ${{ runner.os }}-flutter-3.0.2
+          key: ${{ runner.os }}-flutter-3.0.0
       - name: Configuring flutter environment
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: "3.0.2"
+          flutter-version: "3.0.0"
           channel: "stable"
       - name: "Prepare Flutter Environment"
         run: ./.github/workflows/scripts/prepare-env.sh
@@ -160,11 +160,11 @@ jobs:
         uses: actions/cache@v2
         with:
           path: /opt/hostedtoolcache/flutter
-          key: ${{ runner.os }}-flutter-3.0.2
+          key: ${{ runner.os }}-flutter-3.0.0
       - name: Configuring flutter environment
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: "3.0.2"
+          flutter-version: "3.0.0"
           channel: "stable"
       - name: "Prepare Flutter Environment"
         run: ./.github/workflows/scripts/prepare-env.sh
@@ -195,11 +195,11 @@ jobs:
         uses: actions/cache@v2
         with:
           path: /opt/hostedtoolcache/flutter
-          key: ${{ runner.os }}-flutter-3.0.2
+          key: ${{ runner.os }}-flutter-3.0.0
       - name: Configuring flutter environment
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: "3.0.2"
+          flutter-version: "3.0.0"
           channel: "stable"
       - name: "Prepare Flutter Environment"
         run: ./.github/workflows/scripts/prepare-env.sh
