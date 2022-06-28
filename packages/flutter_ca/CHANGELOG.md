@@ -1,3 +1,6 @@
+## [0.2.6] - 2022-06-28
+- feat: added support for last `flutter_ca_presentation`
+
 ## [0.2.5] - 2022-06-23
 - feat: added support for last `flutter_ca_presentation`
 

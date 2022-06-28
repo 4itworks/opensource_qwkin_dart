@@ -1,3 +1,6 @@
+## [0.2.6] - 2022-06-28
+- fix: fixed rebuild cycle on `ViewModel`
+
 ## [0.2.5] - 2022-06-24
 - feat: changed `initViewModel` on `ViewState` to `initState`
 

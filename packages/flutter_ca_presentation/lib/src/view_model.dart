@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart';
 
 abstract class ViewModel with ChangeNotifier {
-  bool _initialized = false;
+  bool _initialized = true;
   bool _busy = false;
   bool get busy => _busy;
 
@@ -17,7 +17,6 @@ abstract class ViewModel with ChangeNotifier {
 
   @mustCallSuper
   ViewModel() {
-    _initialized = true;
     initializeWatchers();
     initializeUseCases();
   }

@@ -1,6 +1,6 @@
 name: flutter_ca
 description: A framework to implement clean architecture for flutter
-version: 0.2.5
+version: 0.2.6
 homepage:
 
 environment:
