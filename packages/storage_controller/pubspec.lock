@@ -169,7 +169,7 @@ packages:
       name: hive
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.2.2"
+    version: "2.2.3"
   hive_flutter:
     dependency: "direct main"
     description:
@@ -463,5 +463,5 @@ packages:
     source: hosted
     version: "3.1.1"
 sdks:
-  dart: ">=2.17.3 <3.0.0"
-  flutter: ">=3.0.2"
+  dart: ">=2.17.0 <3.0.0"
+  flutter: ">=3.0.0"
