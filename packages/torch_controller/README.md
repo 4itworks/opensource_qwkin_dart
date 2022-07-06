@@ -8,7 +8,7 @@
 A flutter plugin wrote to control `torch/flash` of the device.
 
 ### Installing
-- Add `torch_controller: ^1.0.0` to your pubspec.yaml
+- Add `torch_controller: ^2.0.1` to your pubspec.yaml
 
 ### Usage
 
