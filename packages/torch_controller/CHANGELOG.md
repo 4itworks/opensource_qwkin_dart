@@ -1,3 +1,10 @@
+## [2.0.0] - 2022-06-24
+- chore: Update to use Flutter 3
+- chore: Update to use dependencies to the newest versions
+
+**BREAKING CHANGES**
+- Migrated to Flutter 3
+
 ## [1.0.0] - 2022-05-05
 - feat: Migrated to Android v2 Embedding 
 - Added full android support
