@@ -1,3 +1,7 @@
+## [2.0.1] - 2022-07-06
+- feat: Torch usage is not required anymore
+- chore: Update dependencies to the newest versions
+
 ## [2.0.0] - 2022-06-24
 - chore: Update to use Flutter 3
 - chore: Update dependencies to the newest versions
